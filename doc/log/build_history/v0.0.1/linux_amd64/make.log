@@ -1,43 +1,4 @@
-WORK=/tmp/go-build520548530
-unicode/utf8
-mkdir -p $WORK/b017/
-cat >$WORK/b017/importcfg << 'EOF' # internal
-# import config
-EOF
-cd /usr/local/go/src/unicode/utf8
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b017/_pkg_.a -trimpath "$WORK/b017=>;/usr/local/go/src/unicode/utf8=>unicode/utf8" -p unicode/utf8 -std -complete -buildid soInvehz-Q_JHZzUW_sl/soInvehz-Q_JHZzUW_sl -goversion go1.14 -D "" -importcfg $WORK/b017/importcfg -pack -c=4 ./utf8.go
-runtime/internal/sys
-mkdir -p $WORK/b011/
-unicode
-mkdir -p $WORK/b021/
-cat >$WORK/b011/importcfg << 'EOF' # internal
-# import config
-EOF
-cd /usr/local/go/src/runtime/internal/sys
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b011/_pkg_.a -trimpath "$WORK/b011=>;/usr/local/go/src/runtime/internal/sys=>runtime/internal/sys" -p runtime/internal/sys -std -+ -complete -buildid M7Ma1zb3oBmGFtIFpVNy/M7Ma1zb3oBmGFtIFpVNy -goversion go1.14 -D "" -importcfg $WORK/b011/importcfg -pack -c=4 ./arch.go ./arch_amd64.go ./intrinsics.go ./intrinsics_common.go ./stubs.go ./sys.go ./zgoarch_amd64.go ./zgoos_linux.go ./zversion.go
-cat >$WORK/b021/importcfg << 'EOF' # internal
-# import config
-EOF
-cd /usr/local/go/src/unicode
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b021/_pkg_.a -trimpath "$WORK/b021=>;/usr/local/go/src/unicode=>unicode" -p unicode -std -complete -buildid vhzrhuN8qgfv2asrFNHT/vhzrhuN8qgfv2asrFNHT -goversion go1.14 -D "" -importcfg $WORK/b021/importcfg -pack -c=4 ./casetables.go ./digit.go ./graphic.go ./letter.go ./tables.go
-runtime/internal/atomic
-mkdir -p $WORK/b009/
-cat >$WORK/b009/go_asm.h << 'EOF' # internal
-EOF
-cd /usr/local/go/src/runtime/internal/atomic
-/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b009=>;/usr/local/go/src/runtime/internal/atomic=>runtime/internal/atomic" -I $WORK/b009/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b009/symabis ./asm_amd64.s
-internal/race
-mkdir -p $WORK/b019/
-cat >$WORK/b019/importcfg << 'EOF' # internal
-# import config
-EOF
-cd /usr/local/go/src/internal/race
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b019/_pkg_.a -trimpath "$WORK/b019=>;/usr/local/go/src/internal/race=>internal/race" -p internal/race -std -complete -buildid M9GFuAR84SkHIUerb2-2/M9GFuAR84SkHIUerb2-2 -goversion go1.14 -D "" -importcfg $WORK/b019/importcfg -pack -c=4 ./doc.go ./norace.go
-cat >$WORK/b009/importcfg << 'EOF' # internal
-# import config
-EOF
-cd /usr/local/go/src/runtime/internal/atomic
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b009/_pkg_.a -trimpath "$WORK/b009=>;/usr/local/go/src/runtime/internal/atomic=>runtime/internal/atomic" -p runtime/internal/atomic -std -+ -buildid xaqq8NdSYTSYK0I6Onls/xaqq8NdSYTSYK0I6Onls -goversion go1.14 -symabis $WORK/b009/symabis -D "" -importcfg $WORK/b009/importcfg -pack -asmhdr $WORK/b009/go_asm.h -c=4 ./atomic_amd64.go ./stubs.go
+WORK=/tmp/go-build337344268
 math/bits
 mkdir -p $WORK/b015/
 cat >$WORK/b015/importcfg << 'EOF' # internal
@@ -45,40 +6,82 @@ cat >$WORK/b015/importcfg << 'EOF' # internal
 EOF
 cd /usr/local/go/src/math/bits
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b015/_pkg_.a -trimpath "$WORK/b015=>;/usr/local/go/src/math/bits=>math/bits" -p math/bits -std -complete -buildid E5BoyrMDeo13hrOQVpIP/E5BoyrMDeo13hrOQVpIP -goversion go1.14 -D "" -importcfg $WORK/b015/importcfg -pack -c=4 ./bits.go ./bits_errors.go ./bits_tables.go
-internal/cpu
-mkdir -p $WORK/b007/
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b017/_pkg_.a # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b019/_pkg_.a # internal
-cat >$WORK/b007/go_asm.h << 'EOF' # internal
-EOF
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b011/_pkg_.a # internal
-cd /usr/local/go/src/internal/cpu
-/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b007=>;/usr/local/go/src/internal/cpu=>internal/cpu" -I $WORK/b007/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b007/symabis ./cpu_x86.s
-cp $WORK/b019/_pkg_.a /home/aescaler/.cache/go-build/f0/f0765ab3d0e181a698679fdfeb1bcd5c75413b9baf80839dde3d57fc81b88c71-d # internal
-sync/atomic
-mkdir -p $WORK/b020/
-encoding
-mkdir -p $WORK/b035/
-cat >$WORK/b035/importcfg << 'EOF' # internal
+runtime/internal/sys
+mkdir -p $WORK/b011/
+cat >$WORK/b011/importcfg << 'EOF' # internal
 # import config
 EOF
-cp $WORK/b011/_pkg_.a /home/aescaler/.cache/go-build/83/83a270c867f9bcc7bae06886676b9e383f4da414a887b7594a9df8ab982e8cb0-d # internal
+cd /usr/local/go/src/runtime/internal/sys
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b011/_pkg_.a -trimpath "$WORK/b011=>;/usr/local/go/src/runtime/internal/sys=>runtime/internal/sys" -p runtime/internal/sys -std -+ -complete -buildid M7Ma1zb3oBmGFtIFpVNy/M7Ma1zb3oBmGFtIFpVNy -goversion go1.14 -D "" -importcfg $WORK/b011/importcfg -pack -c=4 ./arch.go ./arch_amd64.go ./intrinsics.go ./intrinsics_common.go ./stubs.go ./sys.go ./zgoarch_amd64.go ./zgoos_linux.go ./zversion.go
+unicode/utf8
+mkdir -p $WORK/b017/
+cat >$WORK/b017/importcfg << 'EOF' # internal
+# import config
+EOF
+cd /usr/local/go/src/unicode/utf8
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b017/_pkg_.a -trimpath "$WORK/b017=>;/usr/local/go/src/unicode/utf8=>unicode/utf8" -p unicode/utf8 -std -complete -buildid soInvehz-Q_JHZzUW_sl/soInvehz-Q_JHZzUW_sl -goversion go1.14 -D "" -importcfg $WORK/b017/importcfg -pack -c=4 ./utf8.go
+runtime/internal/atomic
+mkdir -p $WORK/b009/
+internal/race
+mkdir -p $WORK/b019/
+cat >$WORK/b009/go_asm.h << 'EOF' # internal
+EOF
+cat >$WORK/b019/importcfg << 'EOF' # internal
+# import config
+EOF
+cd /usr/local/go/src/runtime/internal/atomic
+/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b009=>;/usr/local/go/src/runtime/internal/atomic=>runtime/internal/atomic" -I $WORK/b009/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b009/symabis ./asm_amd64.s
+cd /usr/local/go/src/internal/race
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b019/_pkg_.a -trimpath "$WORK/b019=>;/usr/local/go/src/internal/race=>internal/race" -p internal/race -std -complete -buildid M9GFuAR84SkHIUerb2-2/M9GFuAR84SkHIUerb2-2 -goversion go1.14 -D "" -importcfg $WORK/b019/importcfg -pack -c=4 ./doc.go ./norace.go
+internal/cpu
+mkdir -p $WORK/b007/
+cat >$WORK/b007/go_asm.h << 'EOF' # internal
+EOF
+cd /usr/local/go/src/internal/cpu
+/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b007=>;/usr/local/go/src/internal/cpu=>internal/cpu" -I $WORK/b007/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b007/symabis ./cpu_x86.s
+unicode
+mkdir -p $WORK/b021/
+cat >$WORK/b021/importcfg << 'EOF' # internal
+# import config
+EOF
+cd /usr/local/go/src/unicode
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b021/_pkg_.a -trimpath "$WORK/b021=>;/usr/local/go/src/unicode=>unicode" -p unicode -std -complete -buildid vhzrhuN8qgfv2asrFNHT/vhzrhuN8qgfv2asrFNHT -goversion go1.14 -D "" -importcfg $WORK/b021/importcfg -pack -c=4 ./casetables.go ./digit.go ./graphic.go ./letter.go ./tables.go
+cat >$WORK/b009/importcfg << 'EOF' # internal
+# import config
+EOF
+cd /usr/local/go/src/runtime/internal/atomic
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b009/_pkg_.a -trimpath "$WORK/b009=>;/usr/local/go/src/runtime/internal/atomic=>runtime/internal/atomic" -p runtime/internal/atomic -std -+ -buildid xaqq8NdSYTSYK0I6Onls/xaqq8NdSYTSYK0I6Onls -goversion go1.14 -symabis $WORK/b009/symabis -D "" -importcfg $WORK/b009/importcfg -pack -asmhdr $WORK/b009/go_asm.h -c=4 ./atomic_amd64.go ./stubs.go
+sync/atomic
+mkdir -p $WORK/b020/
 cat >$WORK/b020/go_asm.h << 'EOF' # internal
 EOF
-runtime/internal/math
-mkdir -p $WORK/b010/
-cd /usr/local/go/src/encoding
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b035/_pkg_.a -trimpath "$WORK/b035=>;/usr/local/go/src/encoding=>encoding" -p encoding -std -complete -buildid f_uF8ayUErzygVjXXL2g/f_uF8ayUErzygVjXXL2g -goversion go1.14 -D "" -importcfg $WORK/b035/importcfg -pack -c=4 ./encoding.go
 cd /usr/local/go/src/sync/atomic
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b020=>;/usr/local/go/src/sync/atomic=>sync/atomic" -I $WORK/b020/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b020/symabis ./asm.s
+cat >$WORK/b007/importcfg << 'EOF' # internal
+# import config
+EOF
+cd /usr/local/go/src/internal/cpu
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b007/_pkg_.a -trimpath "$WORK/b007=>;/usr/local/go/src/internal/cpu=>internal/cpu" -p internal/cpu -std -+ -buildid FID91e3Gur4_HppZfn2a/FID91e3Gur4_HppZfn2a -goversion go1.14 -symabis $WORK/b007/symabis -D "" -importcfg $WORK/b007/importcfg -pack -asmhdr $WORK/b007/go_asm.h -c=4 ./cpu.go ./cpu_amd64.go ./cpu_x86.go
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b011/_pkg_.a # internal
+cp $WORK/b011/_pkg_.a /home/aescaler/.cache/go-build/83/83a270c867f9bcc7bae06886676b9e383f4da414a887b7594a9df8ab982e8cb0-d # internal
+runtime/internal/math
+mkdir -p $WORK/b010/
 cat >$WORK/b010/importcfg << 'EOF' # internal
 # import config
 packagefile runtime/internal/sys=$WORK/b011/_pkg_.a
 EOF
 cd /usr/local/go/src/runtime/internal/math
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b010/_pkg_.a -trimpath "$WORK/b010=>;/usr/local/go/src/runtime/internal/math=>runtime/internal/math" -p runtime/internal/math -std -+ -complete -buildid 657soWLkBWQ4rIEUv95R/657soWLkBWQ4rIEUv95R -goversion go1.14 -D "" -importcfg $WORK/b010/importcfg -pack -c=4 ./math.go
-cd /usr/local/go/src/runtime/internal/atomic
-/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b009=>;/usr/local/go/src/runtime/internal/atomic=>runtime/internal/atomic" -I $WORK/b009/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b009/asm_amd64.o ./asm_amd64.s
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b019/_pkg_.a # internal
+cp $WORK/b019/_pkg_.a /home/aescaler/.cache/go-build/f0/f0765ab3d0e181a698679fdfeb1bcd5c75413b9baf80839dde3d57fc81b88c71-d # internal
+encoding
+mkdir -p $WORK/b035/
+cat >$WORK/b035/importcfg << 'EOF' # internal
+# import config
+EOF
+cd /usr/local/go/src/encoding
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b035/_pkg_.a -trimpath "$WORK/b035=>;/usr/local/go/src/encoding=>encoding" -p encoding -std -complete -buildid f_uF8ayUErzygVjXXL2g/f_uF8ayUErzygVjXXL2g -goversion go1.14 -D "" -importcfg $WORK/b035/importcfg -pack -c=4 ./encoding.go
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b017/_pkg_.a # internal
 cp $WORK/b017/_pkg_.a /home/aescaler/.cache/go-build/ce/ce855a47ef7c738818a2258eecf39c8dc3743897beb15ffc30bbfc8e6b0a5fbf-d # internal
 unicode/utf16
 mkdir -p $WORK/b039/
@@ -87,47 +90,30 @@ cat >$WORK/b039/importcfg << 'EOF' # internal
 EOF
 cd /usr/local/go/src/unicode/utf16
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b039/_pkg_.a -trimpath "$WORK/b039=>;/usr/local/go/src/unicode/utf16=>unicode/utf16" -p unicode/utf16 -std -complete -buildid Yfen4RNYO7-3ULOG6Ksf/Yfen4RNYO7-3ULOG6Ksf -goversion go1.14 -D "" -importcfg $WORK/b039/importcfg -pack -c=4 ./utf16.go
-cat >$WORK/b007/importcfg << 'EOF' # internal
-# import config
-EOF
-cd /usr/local/go/src/internal/cpu
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b007/_pkg_.a -trimpath "$WORK/b007=>;/usr/local/go/src/internal/cpu=>internal/cpu" -p internal/cpu -std -+ -buildid FID91e3Gur4_HppZfn2a/FID91e3Gur4_HppZfn2a -goversion go1.14 -symabis $WORK/b007/symabis -D "" -importcfg $WORK/b007/importcfg -pack -asmhdr $WORK/b007/go_asm.h -c=4 ./cpu.go ./cpu_amd64.go ./cpu_x86.go
 cat >$WORK/b020/importcfg << 'EOF' # internal
 # import config
 EOF
 cd /usr/local/go/src/sync/atomic
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b020/_pkg_.a -trimpath "$WORK/b020=>;/usr/local/go/src/sync/atomic=>sync/atomic" -p sync/atomic -std -buildid a8lvRqjZgWgJaiXuy3RV/a8lvRqjZgWgJaiXuy3RV -goversion go1.14 -symabis $WORK/b020/symabis -D "" -importcfg $WORK/b020/importcfg -pack -asmhdr $WORK/b020/go_asm.h -c=4 ./doc.go ./value.go
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b015/_pkg_.a # internal
+cp $WORK/b015/_pkg_.a /home/aescaler/.cache/go-build/79/79dd709e731c8c69118959bbcce9fcdda21f40f30367fbb1a27f39292996fdd3-d # internal
+cd /usr/local/go/src/runtime/internal/atomic
+/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b009=>;/usr/local/go/src/runtime/internal/atomic=>runtime/internal/atomic" -I $WORK/b009/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b009/asm_amd64.o ./asm_amd64.s
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b010/_pkg_.a # internal
+cp $WORK/b010/_pkg_.a /home/aescaler/.cache/go-build/ca/ca4ae891834cbaa22f5bf9a60162edb8148bb2e0abd66f1ac9427bf54f0638e4-d # internal
+cd /usr/local/go/src/internal/cpu
+/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b007=>;/usr/local/go/src/internal/cpu=>internal/cpu" -I $WORK/b007/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b007/cpu_x86.o ./cpu_x86.s
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b035/_pkg_.a # internal
+cp $WORK/b035/_pkg_.a /home/aescaler/.cache/go-build/13/13fa05f6485f071735d792d40c2bad6a53a80ceb38fcb539cd3e8d1b7101f60b-d # internal
 cd /usr/local/go/src/runtime/internal/atomic
 /usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b009/_pkg_.a $WORK/b009/asm_amd64.o # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b009/_pkg_.a # internal
 cp $WORK/b009/_pkg_.a /home/aescaler/.cache/go-build/2a/2aab09e081d02f8b488793e40b4b7c2fceb220836c516b7410129782d3a3e6f3-d # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b035/_pkg_.a # internal
-cp $WORK/b035/_pkg_.a /home/aescaler/.cache/go-build/13/13fa05f6485f071735d792d40c2bad6a53a80ceb38fcb539cd3e8d1b7101f60b-d # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b010/_pkg_.a # internal
-cp $WORK/b010/_pkg_.a /home/aescaler/.cache/go-build/ca/ca4ae891834cbaa22f5bf9a60162edb8148bb2e0abd66f1ac9427bf54f0638e4-d # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b039/_pkg_.a # internal
-cd /usr/local/go/src/sync/atomic
-/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b020=>;/usr/local/go/src/sync/atomic=>sync/atomic" -I $WORK/b020/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b020/asm.o ./asm.s
-cp $WORK/b039/_pkg_.a /home/aescaler/.cache/go-build/86/86ccb99b29eee797a6ed9511e0b4b9c636f48dfc6ff983e5eeaf6bb8b23f82ad-d # internal
-cd /usr/local/go/src/internal/cpu
-/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b007=>;/usr/local/go/src/internal/cpu=>internal/cpu" -I $WORK/b007/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b007/cpu_x86.o ./cpu_x86.s
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b015/_pkg_.a # internal
-cd /usr/local/go/src/sync/atomic
-/usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b020/_pkg_.a $WORK/b020/asm.o # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b020/_pkg_.a # internal
-cp $WORK/b015/_pkg_.a /home/aescaler/.cache/go-build/79/79dd709e731c8c69118959bbcce9fcdda21f40f30367fbb1a27f39292996fdd3-d # internal
-cp $WORK/b020/_pkg_.a /home/aescaler/.cache/go-build/7f/7f1c2b6ba0e6f9e3a7302d612681784823dd91bba33c06ca8fdb2dc12bc43043-d # internal
-internal/testlog
-mkdir -p $WORK/b030/
-cat >$WORK/b030/importcfg << 'EOF' # internal
-# import config
-packagefile sync/atomic=$WORK/b020/_pkg_.a
-EOF
-cd /usr/local/go/src/internal/testlog
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b030/_pkg_.a -trimpath "$WORK/b030=>;/usr/local/go/src/internal/testlog=>internal/testlog" -p internal/testlog -std -complete -buildid SBk6ExJGXo0Yn_Rt_GGa/SBk6ExJGXo0Yn_Rt_GGa -goversion go1.14 -D "" -importcfg $WORK/b030/importcfg -pack -c=4 ./log.go
 cd /usr/local/go/src/internal/cpu
 /usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b007/_pkg_.a $WORK/b007/cpu_x86.o # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b007/_pkg_.a # internal
+cd /usr/local/go/src/sync/atomic
+/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b020=>;/usr/local/go/src/sync/atomic=>sync/atomic" -I $WORK/b020/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b020/asm.o ./asm.s
 cp $WORK/b007/_pkg_.a /home/aescaler/.cache/go-build/73/73270f59565b0f3aba9dd19e83e2a3b9285c07f850419f504e08ca329bb0215e-d # internal
 internal/bytealg
 mkdir -p $WORK/b006/
@@ -141,12 +127,24 @@ cat >$WORK/b014/go_asm.h << 'EOF' # internal
 EOF
 cd /usr/local/go/src/math
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b014=>;/usr/local/go/src/math=>math" -I $WORK/b014/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b014/symabis ./dim_amd64.s ./exp_amd64.s ./floor_amd64.s ./hypot_amd64.s ./log_amd64.s ./sqrt_amd64.s ./stubs_amd64.s
+cd /usr/local/go/src/sync/atomic
+/usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b020/_pkg_.a $WORK/b020/asm.o # internal
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b020/_pkg_.a # internal
+cp $WORK/b020/_pkg_.a /home/aescaler/.cache/go-build/7f/7f1c2b6ba0e6f9e3a7302d612681784823dd91bba33c06ca8fdb2dc12bc43043-d # internal
+internal/testlog
+mkdir -p $WORK/b030/
 cat >$WORK/b006/importcfg << 'EOF' # internal
 # import config
 packagefile internal/cpu=$WORK/b007/_pkg_.a
 EOF
 cd /usr/local/go/src/internal/bytealg
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b006/_pkg_.a -trimpath "$WORK/b006=>;/usr/local/go/src/internal/bytealg=>internal/bytealg" -p internal/bytealg -std -+ -buildid If26wfmGxFh3J0FY_53Q/If26wfmGxFh3J0FY_53Q -goversion go1.14 -symabis $WORK/b006/symabis -D "" -importcfg $WORK/b006/importcfg -pack -asmhdr $WORK/b006/go_asm.h -c=4 ./bytealg.go ./compare_native.go ./count_native.go ./equal_generic.go ./equal_native.go ./index_amd64.go ./index_native.go ./indexbyte_native.go
+cat >$WORK/b030/importcfg << 'EOF' # internal
+# import config
+packagefile sync/atomic=$WORK/b020/_pkg_.a
+EOF
+cd /usr/local/go/src/internal/testlog
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b030/_pkg_.a -trimpath "$WORK/b030=>;/usr/local/go/src/internal/testlog=>internal/testlog" -p internal/testlog -std -complete -buildid SBk6ExJGXo0Yn_Rt_GGa/SBk6ExJGXo0Yn_Rt_GGa -goversion go1.14 -D "" -importcfg $WORK/b030/importcfg -pack -c=4 ./log.go
 cat >$WORK/b014/importcfg << 'EOF' # internal
 # import config
 packagefile internal/cpu=$WORK/b007/_pkg_.a
@@ -154,10 +152,12 @@ packagefile math/bits=$WORK/b015/_pkg_.a
 EOF
 cd /usr/local/go/src/math
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b014/_pkg_.a -trimpath "$WORK/b014=>;/usr/local/go/src/math=>math" -p math -std -buildid Ef8cIq-IdESNV4Jye6Xt/Ef8cIq-IdESNV4Jye6Xt -goversion go1.14 -symabis $WORK/b014/symabis -D "" -importcfg $WORK/b014/importcfg -pack -asmhdr $WORK/b014/go_asm.h -c=4 ./abs.go ./acosh.go ./asin.go ./asinh.go ./atan.go ./atan2.go ./atanh.go ./bits.go ./cbrt.go ./const.go ./copysign.go ./dim.go ./erf.go ./erfinv.go ./exp.go ./exp_asm.go ./expm1.go ./floor.go ./fma.go ./frexp.go ./gamma.go ./hypot.go ./j0.go ./j1.go ./jn.go ./ldexp.go ./lgamma.go ./log.go ./log10.go ./log1p.go ./logb.go ./mod.go ./modf.go ./nextafter.go ./pow.go ./pow10.go ./remainder.go ./signbit.go ./sin.go ./sincos.go ./sinh.go ./sqrt.go ./tan.go ./tanh.go ./trig_reduce.go ./unsafe.go
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b030/_pkg_.a # internal
-cp $WORK/b030/_pkg_.a /home/aescaler/.cache/go-build/36/36761bf75df0a30d646fc317a545167308ecb6052c7364801af07dab5b14c0d7-d # internal
 cd /usr/local/go/src/internal/bytealg
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b006=>;/usr/local/go/src/internal/bytealg=>internal/bytealg" -I $WORK/b006/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b006/compare_amd64.o ./compare_amd64.s
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b039/_pkg_.a # internal
+cp $WORK/b039/_pkg_.a /home/aescaler/.cache/go-build/86/86ccb99b29eee797a6ed9511e0b4b9c636f48dfc6ff983e5eeaf6bb8b23f82ad-d # internal
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b030/_pkg_.a # internal
+cp $WORK/b030/_pkg_.a /home/aescaler/.cache/go-build/36/36761bf75df0a30d646fc317a545167308ecb6052c7364801af07dab5b14c0d7-d # internal
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b006=>;/usr/local/go/src/internal/bytealg=>internal/bytealg" -I $WORK/b006/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b006/count_amd64.o ./count_amd64.s
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b006=>;/usr/local/go/src/internal/bytealg=>internal/bytealg" -I $WORK/b006/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b006/equal_amd64.o ./equal_amd64.s
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b006=>;/usr/local/go/src/internal/bytealg=>internal/bytealg" -I $WORK/b006/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b006/index_amd64.o ./index_amd64.s
@@ -165,6 +165,21 @@ cd /usr/local/go/src/internal/bytealg
 /usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b006/_pkg_.a $WORK/b006/compare_amd64.o $WORK/b006/count_amd64.o $WORK/b006/equal_amd64.o $WORK/b006/index_amd64.o $WORK/b006/indexbyte_amd64.o # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b006/_pkg_.a # internal
 cp $WORK/b006/_pkg_.a /home/aescaler/.cache/go-build/95/950287a833b7f877527952cf850866750496823f89186b99d5ce265c67536074-d # internal
+runtime
+mkdir -p $WORK/b005/
+cat >$WORK/b005/go_asm.h << 'EOF' # internal
+EOF
+cd /usr/local/go/src/runtime
+/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b005=>;/usr/local/go/src/runtime=>runtime" -I $WORK/b005/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b005/symabis ./asm.s ./asm_amd64.s ./duff_amd64.s ./memclr_amd64.s ./memmove_amd64.s ./preempt_amd64.s ./rt0_linux_amd64.s ./sys_linux_amd64.s
+cat >$WORK/b005/importcfg << 'EOF' # internal
+# import config
+packagefile internal/bytealg=$WORK/b006/_pkg_.a
+packagefile internal/cpu=$WORK/b007/_pkg_.a
+packagefile runtime/internal/atomic=$WORK/b009/_pkg_.a
+packagefile runtime/internal/math=$WORK/b010/_pkg_.a
+packagefile runtime/internal/sys=$WORK/b011/_pkg_.a
+EOF
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b005/_pkg_.a -trimpath "$WORK/b005=>;/usr/local/go/src/runtime=>runtime" -p runtime -std -+ -buildid YLnJ5ymdAxr6jkZjHJnp/YLnJ5ymdAxr6jkZjHJnp -goversion go1.14 -symabis $WORK/b005/symabis -D "" -importcfg $WORK/b005/importcfg -pack -asmhdr $WORK/b005/go_asm.h -c=4 ./alg.go ./atomic_pointer.go ./cgo.go ./cgo_mmap.go ./cgo_sigaction.go ./cgocall.go ./cgocallback.go ./cgocheck.go ./chan.go ./checkptr.go ./compiler.go ./complex.go ./cpuflags.go ./cpuflags_amd64.go ./cpuprof.go ./cputicks.go ./debug.go ./debugcall.go ./debuglog.go ./debuglog_off.go ./defs_linux_amd64.go ./env_posix.go ./error.go ./extern.go ./fastlog2.go ./fastlog2table.go ./float.go ./hash64.go ./heapdump.go ./iface.go ./lfstack.go ./lfstack_64bit.go ./lock_futex.go ./malloc.go ./map.go ./map_fast32.go ./map_fast64.go ./map_faststr.go ./mbarrier.go ./mbitmap.go ./mcache.go ./mcentral.go ./mem_linux.go ./mfinal.go ./mfixalloc.go ./mgc.go ./mgcmark.go ./mgcscavenge.go ./mgcstack.go ./mgcsweep.go ./mgcsweepbuf.go ./mgcwork.go ./mheap.go ./mpagealloc.go ./mpagealloc_64bit.go ./mpagecache.go ./mpallocbits.go ./mprof.go ./mranges.go ./msan0.go ./msize.go ./mstats.go ./mwbbuf.go ./nbpipe_pipe2.go ./netpoll.go ./netpoll_epoll.go ./os_linux.go ./os_linux_generic.go ./os_linux_noauxv.go ./os_linux_x86.go ./os_nonopenbsd.go ./panic.go ./plugin.go ./preempt.go ./preempt_nonwindows.go ./print.go ./proc.go ./profbuf.go ./proflabel.go ./race0.go ./rdebug.go ./relax_stub.go ./runtime.go ./runtime1.go ./runtime2.go ./rwmutex.go ./select.go ./sema.go ./signal_amd64.go ./signal_linux_amd64.go ./signal_unix.go ./sigqueue.go ./sigqueue_note.go ./sigtab_linux_generic.go ./sizeclasses.go ./slice.go ./softfloat64.go ./stack.go ./string.go ./stubs.go ./stubs2.go ./stubs3.go ./stubs_amd64.go ./stubs_linux.go ./symtab.go ./sys_nonppc64x.go ./sys_x86.go ./time.go ./time_nofake.go ./timestub.go ./timestub2.go ./trace.go ./traceback.go ./type.go ./typekind.go ./utf8.go ./vdso_elf64.go ./vdso_linux.go ./vdso_linux_amd64.go ./write_err.go
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b021/_pkg_.a # internal
 cp $WORK/b021/_pkg_.a /home/aescaler/.cache/go-build/2e/2ee0b89a7231b3c38666aeba34bf9313729963b99a02cecd948b7e209f943894-d # internal
 github.com/shurcooL/sanitized_anchor_name
@@ -175,26 +190,11 @@ packagefile unicode=$WORK/b021/_pkg_.a
 EOF
 cd /home/aescaler/code/xnotify/vendor/github.com/shurcooL/sanitized_anchor_name
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b043/_pkg_.a -trimpath "$WORK/b043=>;/home/aescaler/code/xnotify/vendor/github.com/shurcooL/sanitized_anchor_name=>github.com/shurcooL/sanitized_anchor_name@v1.0.0" -p github.com/shurcooL/sanitized_anchor_name -complete -buildid fowYxul6OQvpVhp3klN9/fowYxul6OQvpVhp3klN9 -goversion go1.14 -D "" -importcfg $WORK/b043/importcfg -pack -c=4 ./main.go
-runtime
-mkdir -p $WORK/b005/
-cat >$WORK/b005/go_asm.h << 'EOF' # internal
-EOF
-cd /usr/local/go/src/runtime
-/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b005=>;/usr/local/go/src/runtime=>runtime" -I $WORK/b005/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b005/symabis ./asm.s ./asm_amd64.s ./duff_amd64.s ./memclr_amd64.s ./memmove_amd64.s ./preempt_amd64.s ./rt0_linux_amd64.s ./sys_linux_amd64.s
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b043/_pkg_.a # internal
-cp $WORK/b043/_pkg_.a /home/aescaler/.cache/go-build/2d/2d61ea398fee32b20adabdf6f0e6eaa66e0c0d22197dfead79a6868a531e75bf-d # internal
-cat >$WORK/b005/importcfg << 'EOF' # internal
-# import config
-packagefile internal/bytealg=$WORK/b006/_pkg_.a
-packagefile internal/cpu=$WORK/b007/_pkg_.a
-packagefile runtime/internal/atomic=$WORK/b009/_pkg_.a
-packagefile runtime/internal/math=$WORK/b010/_pkg_.a
-packagefile runtime/internal/sys=$WORK/b011/_pkg_.a
-EOF
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b005/_pkg_.a -trimpath "$WORK/b005=>;/usr/local/go/src/runtime=>runtime" -p runtime -std -+ -buildid YLnJ5ymdAxr6jkZjHJnp/YLnJ5ymdAxr6jkZjHJnp -goversion go1.14 -symabis $WORK/b005/symabis -D "" -importcfg $WORK/b005/importcfg -pack -asmhdr $WORK/b005/go_asm.h -c=4 ./alg.go ./atomic_pointer.go ./cgo.go ./cgo_mmap.go ./cgo_sigaction.go ./cgocall.go ./cgocallback.go ./cgocheck.go ./chan.go ./checkptr.go ./compiler.go ./complex.go ./cpuflags.go ./cpuflags_amd64.go ./cpuprof.go ./cputicks.go ./debug.go ./debugcall.go ./debuglog.go ./debuglog_off.go ./defs_linux_amd64.go ./env_posix.go ./error.go ./extern.go ./fastlog2.go ./fastlog2table.go ./float.go ./hash64.go ./heapdump.go ./iface.go ./lfstack.go ./lfstack_64bit.go ./lock_futex.go ./malloc.go ./map.go ./map_fast32.go ./map_fast64.go ./map_faststr.go ./mbarrier.go ./mbitmap.go ./mcache.go ./mcentral.go ./mem_linux.go ./mfinal.go ./mfixalloc.go ./mgc.go ./mgcmark.go ./mgcscavenge.go ./mgcstack.go ./mgcsweep.go ./mgcsweepbuf.go ./mgcwork.go ./mheap.go ./mpagealloc.go ./mpagealloc_64bit.go ./mpagecache.go ./mpallocbits.go ./mprof.go ./mranges.go ./msan0.go ./msize.go ./mstats.go ./mwbbuf.go ./nbpipe_pipe2.go ./netpoll.go ./netpoll_epoll.go ./os_linux.go ./os_linux_generic.go ./os_linux_noauxv.go ./os_linux_x86.go ./os_nonopenbsd.go ./panic.go ./plugin.go ./preempt.go ./preempt_nonwindows.go ./print.go ./proc.go ./profbuf.go ./proflabel.go ./race0.go ./rdebug.go ./relax_stub.go ./runtime.go ./runtime1.go ./runtime2.go ./rwmutex.go ./select.go ./sema.go ./signal_amd64.go ./signal_linux_amd64.go ./signal_unix.go ./sigqueue.go ./sigqueue_note.go ./sigtab_linux_generic.go ./sizeclasses.go ./slice.go ./softfloat64.go ./stack.go ./string.go ./stubs.go ./stubs2.go ./stubs3.go ./stubs_amd64.go ./stubs_linux.go ./symtab.go ./sys_nonppc64x.go ./sys_x86.go ./time.go ./time_nofake.go ./timestub.go ./timestub2.go ./trace.go ./traceback.go ./type.go ./typekind.go ./utf8.go ./vdso_elf64.go ./vdso_linux.go ./vdso_linux_amd64.go ./write_err.go
 cd /usr/local/go/src/math
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b014=>;/usr/local/go/src/math=>math" -I $WORK/b014/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b014/dim_amd64.o ./dim_amd64.s
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b014=>;/usr/local/go/src/math=>math" -I $WORK/b014/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b014/exp_amd64.o ./exp_amd64.s
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b043/_pkg_.a # internal
+cp $WORK/b043/_pkg_.a /home/aescaler/.cache/go-build/2d/2d61ea398fee32b20adabdf6f0e6eaa66e0c0d22197dfead79a6868a531e75bf-d # internal
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b014=>;/usr/local/go/src/math=>math" -I $WORK/b014/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b014/floor_amd64.o ./floor_amd64.s
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b014=>;/usr/local/go/src/math=>math" -I $WORK/b014/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b014/hypot_amd64.o ./hypot_amd64.s
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b014=>;/usr/local/go/src/math=>math" -I $WORK/b014/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b014/log_amd64.o ./log_amd64.s
@@ -245,12 +245,12 @@ cp $WORK/b018/_pkg_.a /home/aescaler/.cache/go-build/d6/d65847ffdfa144c66e6bc8bd
 cp $WORK/b004/_pkg_.a /home/aescaler/.cache/go-build/96/96ef519806940532c157ae3c6faa072504e56b2bb07da95312f07b3400685bbf-d # internal
 errors
 mkdir -p $WORK/b003/
-sort
-mkdir -p $WORK/b022/
 cat >$WORK/b003/importcfg << 'EOF' # internal
 # import config
 packagefile internal/reflectlite=$WORK/b004/_pkg_.a
 EOF
+sort
+mkdir -p $WORK/b022/
 cd /usr/local/go/src/errors
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b003/_pkg_.a -trimpath "$WORK/b003=>;/usr/local/go/src/errors=>errors" -p errors -std -complete -buildid xn4UUCaT-OZdXn1av_AB/xn4UUCaT-OZdXn1av_AB -goversion go1.14 -D "" -importcfg $WORK/b003/importcfg -pack -c=4 ./errors.go ./wrap.go
 cat >$WORK/b022/importcfg << 'EOF' # internal
@@ -261,23 +261,6 @@ cd /usr/local/go/src/sort
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b022/_pkg_.a -trimpath "$WORK/b022=>;/usr/local/go/src/sort=>sort" -p sort -std -complete -buildid 4yJNZrrn4T_NYP8DY6rp/4yJNZrrn4T_NYP8DY6rp -goversion go1.14 -D "" -importcfg $WORK/b022/importcfg -pack -c=4 ./search.go ./slice.go ./slice_go113.go ./sort.go ./zfuncversion.go
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b003/_pkg_.a # internal
 cp $WORK/b003/_pkg_.a /home/aescaler/.cache/go-build/29/292748909c450b971c9d9111821599fa81c44d24ca918a7e1504834d88e948d2-d # internal
-internal/oserror
-mkdir -p $WORK/b025/
-io
-mkdir -p $WORK/b023/
-cat >$WORK/b025/importcfg << 'EOF' # internal
-# import config
-packagefile errors=$WORK/b003/_pkg_.a
-EOF
-cd /usr/local/go/src/internal/oserror
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b025/_pkg_.a -trimpath "$WORK/b025=>;/usr/local/go/src/internal/oserror=>internal/oserror" -p internal/oserror -std -complete -buildid 4r44KNDSnv9gZWt17wQt/4r44KNDSnv9gZWt17wQt -goversion go1.14 -D "" -importcfg $WORK/b025/importcfg -pack -c=4 ./errors.go
-cat >$WORK/b023/importcfg << 'EOF' # internal
-# import config
-packagefile errors=$WORK/b003/_pkg_.a
-packagefile sync=$WORK/b018/_pkg_.a
-EOF
-cd /usr/local/go/src/io
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b023/_pkg_.a -trimpath "$WORK/b023=>;/usr/local/go/src/io=>io" -p io -std -complete -buildid LR2MgmlO_hFJcyjGf0i5/LR2MgmlO_hFJcyjGf0i5 -goversion go1.14 -D "" -importcfg $WORK/b023/importcfg -pack -c=4 ./io.go ./multi.go ./pipe.go
 strconv
 mkdir -p $WORK/b016/
 cat >$WORK/b016/importcfg << 'EOF' # internal
@@ -290,16 +273,33 @@ packagefile unicode/utf8=$WORK/b017/_pkg_.a
 EOF
 cd /usr/local/go/src/strconv
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b016/_pkg_.a -trimpath "$WORK/b016=>;/usr/local/go/src/strconv=>strconv" -p strconv -std -complete -buildid tVTvbAR1ATVE5f210pAH/tVTvbAR1ATVE5f210pAH -goversion go1.14 -D "" -importcfg $WORK/b016/importcfg -pack -c=4 ./atob.go ./atof.go ./atoi.go ./decimal.go ./doc.go ./extfloat.go ./ftoa.go ./isprint.go ./itoa.go ./quote.go
+io
+mkdir -p $WORK/b023/
+internal/oserror
+mkdir -p $WORK/b025/
+cat >$WORK/b023/importcfg << 'EOF' # internal
+# import config
+packagefile errors=$WORK/b003/_pkg_.a
+packagefile sync=$WORK/b018/_pkg_.a
+EOF
+cat >$WORK/b025/importcfg << 'EOF' # internal
+# import config
+packagefile errors=$WORK/b003/_pkg_.a
+EOF
+cd /usr/local/go/src/io
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b023/_pkg_.a -trimpath "$WORK/b023=>;/usr/local/go/src/io=>io" -p io -std -complete -buildid LR2MgmlO_hFJcyjGf0i5/LR2MgmlO_hFJcyjGf0i5 -goversion go1.14 -D "" -importcfg $WORK/b023/importcfg -pack -c=4 ./io.go ./multi.go ./pipe.go
+cd /usr/local/go/src/internal/oserror
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b025/_pkg_.a -trimpath "$WORK/b025=>;/usr/local/go/src/internal/oserror=>internal/oserror" -p internal/oserror -std -complete -buildid 4r44KNDSnv9gZWt17wQt/4r44KNDSnv9gZWt17wQt -goversion go1.14 -D "" -importcfg $WORK/b025/importcfg -pack -c=4 ./errors.go
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b022/_pkg_.a # internal
+cp $WORK/b022/_pkg_.a /home/aescaler/.cache/go-build/7b/7bebc0b3b853f199b89a610ec848e5052f2cee45171c470c56ca9c06b6483219-d # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b025/_pkg_.a # internal
 cp $WORK/b025/_pkg_.a /home/aescaler/.cache/go-build/6d/6d745cba7f9fa091eeee6e1e043a501a800879cd517169fd9a5f1ef4b3f6eb84-d # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b022/_pkg_.a # internal
 syscall
 mkdir -p $WORK/b028/
 cat >$WORK/b028/go_asm.h << 'EOF' # internal
 EOF
 cd /usr/local/go/src/syscall
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b028=>;/usr/local/go/src/syscall=>syscall" -I $WORK/b028/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b028/symabis ./asm_linux_amd64.s
-cp $WORK/b022/_pkg_.a /home/aescaler/.cache/go-build/7b/7bebc0b3b853f199b89a610ec848e5052f2cee45171c470c56ca9c06b6483219-d # internal
 cat >$WORK/b028/importcfg << 'EOF' # internal
 # import config
 packagefile internal/bytealg=$WORK/b006/_pkg_.a
@@ -311,17 +311,8 @@ EOF
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b028/_pkg_.a -trimpath "$WORK/b028=>;/usr/local/go/src/syscall=>syscall" -p syscall -std -buildid W6TaEbZ3l0B6oYvPZcTa/W6TaEbZ3l0B6oYvPZcTa -goversion go1.14 -symabis $WORK/b028/symabis -D "" -importcfg $WORK/b028/importcfg -pack -asmhdr $WORK/b028/go_asm.h -c=4 ./dirent.go ./endian_little.go ./env_unix.go ./exec_linux.go ./exec_unix.go ./flock.go ./lsf_linux.go ./msan0.go ./net.go ./netlink_linux.go ./setuidgid_linux.go ./sock_cloexec_linux.go ./sockcmsg_linux.go ./sockcmsg_unix.go ./sockcmsg_unix_other.go ./str.go ./syscall.go ./syscall_linux.go ./syscall_linux_amd64.go ./syscall_unix.go ./time_nofake.go ./timestruct.go ./zerrors_linux_amd64.go ./zsyscall_linux_amd64.go ./zsysnum_linux_amd64.go ./ztypes_linux_amd64.go
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b023/_pkg_.a # internal
 cp $WORK/b023/_pkg_.a /home/aescaler/.cache/go-build/72/7213a8ab80c79f92d84d94bd86a4e3b19de068fba6741c09d5717d6c46fa4061-d # internal
-text/tabwriter
-mkdir -p $WORK/b049/
-strings
-mkdir -p $WORK/b038/
 bytes
 mkdir -p $WORK/b032/
-cat >$WORK/b049/importcfg << 'EOF' # internal
-# import config
-packagefile io=$WORK/b023/_pkg_.a
-packagefile unicode/utf8=$WORK/b017/_pkg_.a
-EOF
 cat >$WORK/b032/importcfg << 'EOF' # internal
 # import config
 packagefile errors=$WORK/b003/_pkg_.a
@@ -330,10 +321,19 @@ packagefile io=$WORK/b023/_pkg_.a
 packagefile unicode=$WORK/b021/_pkg_.a
 packagefile unicode/utf8=$WORK/b017/_pkg_.a
 EOF
-cd /usr/local/go/src/text/tabwriter
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b049/_pkg_.a -trimpath "$WORK/b049=>;/usr/local/go/src/text/tabwriter=>text/tabwriter" -p text/tabwriter -std -complete -buildid -ASD0mjWUdqoKbeWGOq1/-ASD0mjWUdqoKbeWGOq1 -goversion go1.14 -D "" -importcfg $WORK/b049/importcfg -pack -c=4 ./tabwriter.go
 cd /usr/local/go/src/bytes
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b032/_pkg_.a -trimpath "$WORK/b032=>;/usr/local/go/src/bytes=>bytes" -p bytes -std -buildid 49pkNjTyry57UBSvyHZ2/49pkNjTyry57UBSvyHZ2 -goversion go1.14 -D "" -importcfg $WORK/b032/importcfg -pack -c=4 ./buffer.go ./bytes.go ./reader.go
+text/tabwriter
+mkdir -p $WORK/b049/
+cat >$WORK/b049/importcfg << 'EOF' # internal
+# import config
+packagefile io=$WORK/b023/_pkg_.a
+packagefile unicode/utf8=$WORK/b017/_pkg_.a
+EOF
+strings
+cd /usr/local/go/src/text/tabwriter
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b049/_pkg_.a -trimpath "$WORK/b049=>;/usr/local/go/src/text/tabwriter=>text/tabwriter" -p text/tabwriter -std -complete -buildid -ASD0mjWUdqoKbeWGOq1/-ASD0mjWUdqoKbeWGOq1 -goversion go1.14 -D "" -importcfg $WORK/b049/importcfg -pack -c=4 ./tabwriter.go
+mkdir -p $WORK/b038/
 cat >$WORK/b038/importcfg << 'EOF' # internal
 # import config
 packagefile errors=$WORK/b003/_pkg_.a
@@ -345,8 +345,6 @@ packagefile unicode/utf8=$WORK/b017/_pkg_.a
 EOF
 cd /usr/local/go/src/strings
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b038/_pkg_.a -trimpath "$WORK/b038=>;/usr/local/go/src/strings=>strings" -p strings -std -complete -buildid f6auVTm9Kb6r9PVhajbS/f6auVTm9Kb6r9PVhajbS -goversion go1.14 -D "" -importcfg $WORK/b038/importcfg -pack -c=4 ./builder.go ./compare.go ./reader.go ./replace.go ./search.go ./strings.go
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b049/_pkg_.a # internal
-cp $WORK/b049/_pkg_.a /home/aescaler/.cache/go-build/8f/8f21b4e87df4ef117af867066598d662ddd5ecab20711678eec194ae9365b5bf-d # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b016/_pkg_.a # internal
 cp $WORK/b016/_pkg_.a /home/aescaler/.cache/go-build/54/54e18c33de3fdbf0436ecc4a26acfff3803ee7fc6a3f563eb88f2c0a3950596b-d # internal
 reflect
@@ -355,6 +353,8 @@ cat >$WORK/b013/go_asm.h << 'EOF' # internal
 EOF
 cd /usr/local/go/src/reflect
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b013=>;/usr/local/go/src/reflect=>reflect" -I $WORK/b013/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -gensymabis -o $WORK/b013/symabis ./asm_amd64.s
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b049/_pkg_.a # internal
+cp $WORK/b049/_pkg_.a /home/aescaler/.cache/go-build/8f/8f21b4e87df4ef117af867066598d662ddd5ecab20711678eec194ae9365b5bf-d # internal
 cat >$WORK/b013/importcfg << 'EOF' # internal
 # import config
 packagefile math=$WORK/b014/_pkg_.a
@@ -371,8 +371,6 @@ cp $WORK/b032/_pkg_.a /home/aescaler/.cache/go-build/2f/2fde98c623e79538e0d4b1b8
 cp $WORK/b038/_pkg_.a /home/aescaler/.cache/go-build/38/38cbaa623803b08ea678077c79086748875b00aed0c223cbbcbd528935cd0786-d # internal
 regexp/syntax
 mkdir -p $WORK/b046/
-html
-mkdir -p $WORK/b044/
 cat >$WORK/b046/importcfg << 'EOF' # internal
 # import config
 packagefile sort=$WORK/b022/_pkg_.a
@@ -383,6 +381,8 @@ packagefile unicode/utf8=$WORK/b017/_pkg_.a
 EOF
 cd /usr/local/go/src/regexp/syntax
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b046/_pkg_.a -trimpath "$WORK/b046=>;/usr/local/go/src/regexp/syntax=>regexp/syntax" -p regexp/syntax -std -complete -buildid RMh4VDVxZIRoiVh_3wUN/RMh4VDVxZIRoiVh_3wUN -goversion go1.14 -D "" -importcfg $WORK/b046/importcfg -pack -c=4 ./compile.go ./doc.go ./op_string.go ./parse.go ./perl_groups.go ./prog.go ./regexp.go ./simplify.go
+html
+mkdir -p $WORK/b044/
 cat >$WORK/b044/importcfg << 'EOF' # internal
 # import config
 packagefile strings=$WORK/b038/_pkg_.a
@@ -391,12 +391,12 @@ packagefile unicode/utf8=$WORK/b017/_pkg_.a
 EOF
 cd /usr/local/go/src/html
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b044/_pkg_.a -trimpath "$WORK/b044=>;/usr/local/go/src/html=>html" -p html -std -complete -buildid IUXXStxjIcggRkNmnvbC/IUXXStxjIcggRkNmnvbC -goversion go1.14 -D "" -importcfg $WORK/b044/importcfg -pack -c=4 ./entity.go ./escape.go
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b044/_pkg_.a # internal
+cp $WORK/b044/_pkg_.a /home/aescaler/.cache/go-build/6a/6a26328f5363a65ae42abeb6bf4b3e0ff6d61ddfe0fa75144c60f2bf81c613aa-d # internal
 cd /usr/local/go/src/syscall
 /usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b028=>;/usr/local/go/src/syscall=>syscall" -I $WORK/b028/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b028/asm_linux_amd64.o ./asm_linux_amd64.s
 /usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b028/_pkg_.a $WORK/b028/asm_linux_amd64.o # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b028/_pkg_.a # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b044/_pkg_.a # internal
-cp $WORK/b044/_pkg_.a /home/aescaler/.cache/go-build/6a/6a26328f5363a65ae42abeb6bf4b3e0ff6d61ddfe0fa75144c60f2bf81c613aa-d # internal
 cp $WORK/b028/_pkg_.a /home/aescaler/.cache/go-build/e8/e81daae5b7b4eca0f4efb4d6eba1b4830a3f3728f5bbc92ad7a1f52e87d145b1-d # internal
 internal/syscall/unix
 mkdir -p $WORK/b027/
@@ -439,6 +439,11 @@ EOF
 cd /usr/local/go/src/regexp
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b045/_pkg_.a -trimpath "$WORK/b045=>;/usr/local/go/src/regexp=>regexp" -p regexp -std -complete -buildid bsnzsxj5LIk85shTkTJ2/bsnzsxj5LIk85shTkTJ2 -goversion go1.14 -D "" -importcfg $WORK/b045/importcfg -pack -c=4 ./backtrack.go ./exec.go ./onepass.go ./regexp.go
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b029/_pkg_.a # internal
+cd /usr/local/go/src/reflect
+/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b013=>;/usr/local/go/src/reflect=>reflect" -I $WORK/b013/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b013/asm_amd64.o ./asm_amd64.s
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b045/_pkg_.a # internal
+/usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b013/_pkg_.a $WORK/b013/asm_amd64.o # internal
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b013/_pkg_.a # internal
 cp $WORK/b029/_pkg_.a /home/aescaler/.cache/go-build/2e/2e520bc8aae1b6a61d6b37a09b1b05fd745d442a3d4d19f3d91196c30517f59b-d # internal
 context
 mkdir -p $WORK/b033/
@@ -467,26 +472,12 @@ packagefile time=$WORK/b029/_pkg_.a
 EOF
 cd /usr/local/go/src/internal/poll
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b026/_pkg_.a -trimpath "$WORK/b026=>;/usr/local/go/src/internal/poll=>internal/poll" -p internal/poll -std -buildid ua8QDMSXFqYydxbhDj5G/ua8QDMSXFqYydxbhDj5G -goversion go1.14 -D "" -importcfg $WORK/b026/importcfg -pack -c=4 ./errno_unix.go ./fcntl_syscall.go ./fd.go ./fd_fsync_posix.go ./fd_mutex.go ./fd_poll_runtime.go ./fd_posix.go ./fd_unix.go ./fd_writev_unix.go ./hook_cloexec.go ./hook_unix.go ./sendfile_linux.go ./sock_cloexec.go ./sockopt.go ./sockopt_linux.go ./sockopt_unix.go ./sockoptip.go ./splice_linux.go ./writev.go
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b045/_pkg_.a # internal
 cp $WORK/b045/_pkg_.a /home/aescaler/.cache/go-build/a9/a95aa3d663a880bc796f2acf044cc3dc88d36f7ad9c26325175906ab849e76f2-d # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b033/_pkg_.a # internal
-cp $WORK/b033/_pkg_.a /home/aescaler/.cache/go-build/06/06439d074b75d08e3a19692704940a132b2e23746194454f917ac71dbc36d26a-d # internal
-cd /usr/local/go/src/reflect
-/usr/local/go/pkg/tool/linux_amd64/asm -trimpath "$WORK/b013=>;/usr/local/go/src/reflect=>reflect" -I $WORK/b013/ -I /usr/local/go/pkg/include -D GOOS_linux -D GOARCH_amd64 -o $WORK/b013/asm_amd64.o ./asm_amd64.s
-/usr/local/go/pkg/tool/linux_amd64/pack r $WORK/b013/_pkg_.a $WORK/b013/asm_amd64.o # internal
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b013/_pkg_.a # internal
 cp $WORK/b013/_pkg_.a /home/aescaler/.cache/go-build/94/9431b549976c8096629018ca076fe973c476d6c229166344a153fcae53641412-d # internal
 internal/fmtsort
 mkdir -p $WORK/b012/
 encoding/binary
 mkdir -p $WORK/b037/
-cat >$WORK/b012/importcfg << 'EOF' # internal
-# import config
-packagefile reflect=$WORK/b013/_pkg_.a
-packagefile sort=$WORK/b022/_pkg_.a
-EOF
-cd /usr/local/go/src/internal/fmtsort
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b012/_pkg_.a -trimpath "$WORK/b012=>;/usr/local/go/src/internal/fmtsort=>internal/fmtsort" -p internal/fmtsort -std -complete -buildid w-ZTVNHAMmLQEGLx8dnQ/w-ZTVNHAMmLQEGLx8dnQ -goversion go1.14 -D "" -importcfg $WORK/b012/importcfg -pack -c=4 ./sort.go
 cat >$WORK/b037/importcfg << 'EOF' # internal
 # import config
 packagefile errors=$WORK/b003/_pkg_.a
@@ -497,6 +488,17 @@ packagefile sync=$WORK/b018/_pkg_.a
 EOF
 cd /usr/local/go/src/encoding/binary
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b037/_pkg_.a -trimpath "$WORK/b037=>;/usr/local/go/src/encoding/binary=>encoding/binary" -p encoding/binary -std -complete -buildid 6CVTPE0ZTy1cbhaIY0Gi/6CVTPE0ZTy1cbhaIY0Gi -goversion go1.14 -D "" -importcfg $WORK/b037/importcfg -pack -c=4 ./binary.go ./varint.go
+cat >$WORK/b012/importcfg << 'EOF' # internal
+# import config
+packagefile reflect=$WORK/b013/_pkg_.a
+packagefile sort=$WORK/b022/_pkg_.a
+EOF
+cd /usr/local/go/src/internal/fmtsort
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b012/_pkg_.a -trimpath "$WORK/b012=>;/usr/local/go/src/internal/fmtsort=>internal/fmtsort" -p internal/fmtsort -std -complete -buildid w-ZTVNHAMmLQEGLx8dnQ/w-ZTVNHAMmLQEGLx8dnQ -goversion go1.14 -D "" -importcfg $WORK/b012/importcfg -pack -c=4 ./sort.go
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b033/_pkg_.a # internal
+cp $WORK/b033/_pkg_.a /home/aescaler/.cache/go-build/06/06439d074b75d08e3a19692704940a132b2e23746194454f917ac71dbc36d26a-d # internal
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b012/_pkg_.a # internal
+cp $WORK/b012/_pkg_.a /home/aescaler/.cache/go-build/b5/b5a3499512e85cd1b0799fb9462ffbb08b922206f1e5ce7992e9d6539415b08d-d # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b026/_pkg_.a # internal
 cp $WORK/b026/_pkg_.a /home/aescaler/.cache/go-build/fc/fc25272807a9cff7dcc84776658bd61eb5854b357ea13a9e44ef3cbf394875b4-d # internal
 os
@@ -517,8 +519,6 @@ packagefile time=$WORK/b029/_pkg_.a
 EOF
 cd /usr/local/go/src/os
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b024/_pkg_.a -trimpath "$WORK/b024=>;/usr/local/go/src/os=>os" -p os -std -buildid Nt8d-R6bt4b9_RitKoE8/Nt8d-R6bt4b9_RitKoE8 -goversion go1.14 -D "" -importcfg $WORK/b024/importcfg -pack -c=4 ./dir.go ./dir_unix.go ./env.go ./env_default.go ./error.go ./error_errno.go ./error_posix.go ./exec.go ./exec_posix.go ./exec_unix.go ./executable.go ./executable_procfs.go ./file.go ./file_posix.go ./file_unix.go ./getwd.go ./path.go ./path_unix.go ./pipe_linux.go ./proc.go ./rawconn.go ./removeall_at.go ./stat.go ./stat_linux.go ./stat_unix.go ./sticky_notbsd.go ./str.go ./sys.go ./sys_linux.go ./sys_unix.go ./types.go ./types_unix.go ./wait_waitid.go
-/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b012/_pkg_.a # internal
-cp $WORK/b012/_pkg_.a /home/aescaler/.cache/go-build/b5/b5a3499512e85cd1b0799fb9462ffbb08b922206f1e5ce7992e9d6539415b08d-d # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b037/_pkg_.a # internal
 cp $WORK/b037/_pkg_.a /home/aescaler/.cache/go-build/39/39ba586083f68b7d5f9dd8766be03d86b972049aa10ae09907c6114f1bfb2d9f-d # internal
 encoding/base64
@@ -537,6 +537,8 @@ cp $WORK/b036/_pkg_.a /home/aescaler/.cache/go-build/30/30924b61ee41d6697197d931
 cp $WORK/b024/_pkg_.a /home/aescaler/.cache/go-build/c9/c9a347912480cb1a2c3b6ea2c331caf48f7cf34d9cee67c4c0f29aae7ee8c26d-d # internal
 path/filepath
 mkdir -p $WORK/b048/
+fmt
+mkdir -p $WORK/b002/
 cat >$WORK/b048/importcfg << 'EOF' # internal
 # import config
 packagefile errors=$WORK/b003/_pkg_.a
@@ -547,8 +549,6 @@ packagefile strings=$WORK/b038/_pkg_.a
 packagefile syscall=$WORK/b028/_pkg_.a
 packagefile unicode/utf8=$WORK/b017/_pkg_.a
 EOF
-fmt
-mkdir -p $WORK/b002/
 cd /usr/local/go/src/path/filepath
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b048/_pkg_.a -trimpath "$WORK/b048=>;/usr/local/go/src/path/filepath=>path/filepath" -p path/filepath -std -complete -buildid 0CMDhwHZ-s4mx9xope2i/0CMDhwHZ-s4mx9xope2i -goversion go1.14 -D "" -importcfg $WORK/b048/importcfg -pack -c=4 ./match.go ./path.go ./path_unix.go ./symlink.go ./symlink_unix.go
 cat >$WORK/b002/importcfg << 'EOF' # internal
@@ -587,33 +587,12 @@ cd /usr/local/go/src/io/ioutil
 cp $WORK/b047/_pkg_.a /home/aescaler/.cache/go-build/da/da251f0661294d41ef677c5233e5085654620ec7c877cfea7dc37a6274e75d5e-d # internal
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b002/_pkg_.a # internal
 cp $WORK/b002/_pkg_.a /home/aescaler/.cache/go-build/33/33a31924660ac2bd132178e05fceabbf11efbd10057be82ba2a0a9c9e9f548e8-d # internal
+flag
+mkdir -p $WORK/b040/
 log
 mkdir -p $WORK/b053/
-flag
 net/url
 mkdir -p $WORK/b051/
-cat >$WORK/b053/importcfg << 'EOF' # internal
-# import config
-packagefile fmt=$WORK/b002/_pkg_.a
-packagefile io=$WORK/b023/_pkg_.a
-packagefile os=$WORK/b024/_pkg_.a
-packagefile runtime=$WORK/b005/_pkg_.a
-packagefile sync=$WORK/b018/_pkg_.a
-packagefile time=$WORK/b029/_pkg_.a
-EOF
-mkdir -p $WORK/b040/
-cd /usr/local/go/src/log
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b053/_pkg_.a -trimpath "$WORK/b053=>;/usr/local/go/src/log=>log" -p log -std -complete -buildid 3JMqlW99jv6lilFcc99y/3JMqlW99jv6lilFcc99y -goversion go1.14 -D "" -importcfg $WORK/b053/importcfg -pack -c=4 ./log.go
-text/template/parse
-cat >$WORK/b051/importcfg << 'EOF' # internal
-# import config
-packagefile errors=$WORK/b003/_pkg_.a
-packagefile fmt=$WORK/b002/_pkg_.a
-packagefile sort=$WORK/b022/_pkg_.a
-packagefile strconv=$WORK/b016/_pkg_.a
-packagefile strings=$WORK/b038/_pkg_.a
-EOF
-mkdir -p $WORK/b052/
 cat >$WORK/b040/importcfg << 'EOF' # internal
 # import config
 packagefile errors=$WORK/b003/_pkg_.a
@@ -626,10 +605,32 @@ packagefile strconv=$WORK/b016/_pkg_.a
 packagefile strings=$WORK/b038/_pkg_.a
 packagefile time=$WORK/b029/_pkg_.a
 EOF
-cd /usr/local/go/src/net/url
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b051/_pkg_.a -trimpath "$WORK/b051=>;/usr/local/go/src/net/url=>net/url" -p net/url -std -complete -buildid Wl68ekfwwP3izxnA7aNx/Wl68ekfwwP3izxnA7aNx -goversion go1.14 -D "" -importcfg $WORK/b051/importcfg -pack -c=4 ./url.go
+cat >$WORK/b053/importcfg << 'EOF' # internal
+# import config
+packagefile fmt=$WORK/b002/_pkg_.a
+packagefile io=$WORK/b023/_pkg_.a
+packagefile os=$WORK/b024/_pkg_.a
+packagefile runtime=$WORK/b005/_pkg_.a
+packagefile sync=$WORK/b018/_pkg_.a
+packagefile time=$WORK/b029/_pkg_.a
+EOF
 cd /usr/local/go/src/flag
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b040/_pkg_.a -trimpath "$WORK/b040=>;/usr/local/go/src/flag=>flag" -p flag -std -complete -buildid 34cRu-RW5le5pHb2nLLL/34cRu-RW5le5pHb2nLLL -goversion go1.14 -D "" -importcfg $WORK/b040/importcfg -pack -c=4 ./flag.go
+cat >$WORK/b051/importcfg << 'EOF' # internal
+# import config
+packagefile errors=$WORK/b003/_pkg_.a
+packagefile fmt=$WORK/b002/_pkg_.a
+packagefile sort=$WORK/b022/_pkg_.a
+packagefile strconv=$WORK/b016/_pkg_.a
+packagefile strings=$WORK/b038/_pkg_.a
+EOF
+text/template/parse
+cd /usr/local/go/src/log
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b053/_pkg_.a -trimpath "$WORK/b053=>;/usr/local/go/src/log=>log" -p log -std -complete -buildid 3JMqlW99jv6lilFcc99y/3JMqlW99jv6lilFcc99y -goversion go1.14 -D "" -importcfg $WORK/b053/importcfg -pack -c=4 ./log.go
+encoding/json
+cd /usr/local/go/src/net/url
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b051/_pkg_.a -trimpath "$WORK/b051=>;/usr/local/go/src/net/url=>net/url" -p net/url -std -complete -buildid Wl68ekfwwP3izxnA7aNx/Wl68ekfwwP3izxnA7aNx -goversion go1.14 -D "" -importcfg $WORK/b051/importcfg -pack -c=4 ./url.go
+mkdir -p $WORK/b052/
 cat >$WORK/b052/importcfg << 'EOF' # internal
 # import config
 packagefile bytes=$WORK/b032/_pkg_.a
@@ -640,10 +641,9 @@ packagefile strings=$WORK/b038/_pkg_.a
 packagefile unicode=$WORK/b021/_pkg_.a
 packagefile unicode/utf8=$WORK/b017/_pkg_.a
 EOF
+mkdir -p $WORK/b034/
 cd /usr/local/go/src/text/template/parse
 /usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b052/_pkg_.a -trimpath "$WORK/b052=>;/usr/local/go/src/text/template/parse=>text/template/parse" -p text/template/parse -std -complete -buildid 3RsPFQRtSBXc9574JOEC/3RsPFQRtSBXc9574JOEC -goversion go1.14 -D "" -importcfg $WORK/b052/importcfg -pack -c=4 ./lex.go ./node.go ./parse.go
-encoding/json
-mkdir -p $WORK/b034/
 github.com/russross/blackfriday/v2
 mkdir -p $WORK/b042/
 cat >$WORK/b034/importcfg << 'EOF' # internal
@@ -781,9 +781,9 @@ packagefile time=$WORK/b029/_pkg_.a
 packagefile runtime=$WORK/b005/_pkg_.a
 EOF
 cd /home/aescaler/code/xnotify
-/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b001/_pkg_.a -trimpath "$WORK/b001=>;/home/aescaler/code/xnotify=>github.com/angelofdeauth/xnotify" -p main -lang=go1.14 -complete -buildid KdOAzgnRjSvXzOmjeIV5/KdOAzgnRjSvXzOmjeIV5 -goversion go1.14 -D "" -importcfg $WORK/b001/importcfg -pack -c=4 ./main.go $WORK/b001/_gomod_.go
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b001/_pkg_.a -trimpath "$WORK/b001=>;/home/aescaler/code/xnotify=>github.com/angelofdeauth/xnotify" -p main -lang=go1.14 -complete -buildid qLbEovTND5oXzVQEmMuG/qLbEovTND5oXzVQEmMuG -goversion go1.14 -D "" -importcfg $WORK/b001/importcfg -pack -c=4 ./main.go $WORK/b001/_gomod_.go
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b001/_pkg_.a # internal
-cp $WORK/b001/_pkg_.a /home/aescaler/.cache/go-build/a5/a5160723b19c0f4e1f536574e5b43014c33d75758b97108c6b439da65be976a2-d # internal
+cp $WORK/b001/_pkg_.a /home/aescaler/.cache/go-build/76/763eca869a889eaeeb27d3da4d0aa0dd36121e118a8a5bc4fed3d2279b60fc9b-d # internal
 cat >$WORK/b001/importcfg.link << 'EOF' # internal
 packagefile github.com/angelofdeauth/xnotify=$WORK/b001/_pkg_.a
 packagefile fmt=$WORK/b002/_pkg_.a
@@ -840,7 +840,7 @@ packagefile html=$WORK/b044/_pkg_.a
 EOF
 mkdir -p $WORK/b001/exe/
 cd .
-GOROOT_FINAL='go' /usr/local/go/pkg/tool/linux_amd64/link -o $WORK/b001/exe/a.out -importcfg $WORK/b001/importcfg.link -buildmode=exe -buildid=_tOZDKLHLqGVgOauLeiy/KdOAzgnRjSvXzOmjeIV5/53qL6xFk2LqD_vPHNOF3/_tOZDKLHLqGVgOauLeiy -X main.VERSION=v0.0.1 -X main.COMMIT=2286e186e8a73ec68166c922eb348d7ca634af8e -X main.APP=xnotify -extld=gcc $WORK/b001/_pkg_.a
+GOROOT_FINAL='go' /usr/local/go/pkg/tool/linux_amd64/link -o $WORK/b001/exe/a.out -importcfg $WORK/b001/importcfg.link -buildmode=exe -buildid=tQIcZYHoahthBdcX-lsC/qLbEovTND5oXzVQEmMuG/UmxN-t8U_rtOwYqR_jft/tQIcZYHoahthBdcX-lsC -X main.VERSION=v0.0.1 -X main.COMMIT=552ef5a75a48a28e7feb6378ae4c8d388574d6cf -X main.APP=xnotify -extld=gcc $WORK/b001/_pkg_.a
 /usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b001/exe/a.out # internal
 mkdir -p bin/v0.0.1/linux_amd64/
 cp $WORK/b001/exe/a.out bin/v0.0.1/linux_amd64/xnotify
