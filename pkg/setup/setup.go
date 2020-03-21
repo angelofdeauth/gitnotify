@@ -1,6 +1,6 @@
 // @File:     setup.go
 // @Created:  2020-03-21 03:57:46
-// @Modified: 2020-03-21 04:26:23
+// @Modified: 2020-03-21 04:53:10
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -44,21 +44,21 @@ func (s *Config) common(a string, c string, v string) error {
 func overrides() error {
 
     // overrides the default cli AppHelpTemplate
-    aht, errr := read.EmbeddedFileToString("/AppHelpTemplate.gotmpl")
+    aht, errr := read.EmbeddedTemplateToString("/AppHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
     cli.AppHelpTemplate = aht
 
     // overrides the default cli CommandHelpTemplate
-    cht, errr := read.EmbeddedFileToString("/CommandHelpTemplate.gotmpl")
+    cht, errr := read.EmbeddedTemplateToString("/CommandHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
     cli.CommandHelpTemplate = cht
 
     // overrides the default cli SubcommandHelpTemplate
-    sht, errr := read.EmbeddedFileToString("/SubcommandHelpTemplate.gotmpl")
+    sht, errr := read.EmbeddedTemplateToString("/SubcommandHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
