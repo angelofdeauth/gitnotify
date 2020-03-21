@@ -1,7 +1,7 @@
 /*
  * @File:     setup.go
  * @Created:  2020-03-19 14:47:11
- * @Modified: 2020-03-19 16:50:01
+ * @Modified: 2020-03-19 23:18:54
  * @Author:   Antonio Escalera
  * @Commiter: Antonio Escalera
  * @Mail:     aj@angelofdeauth.host
@@ -25,47 +25,66 @@ import (
 
 // Config is the struct containing automatically collected configuration information.
 type Config struct {
-    Home string
+    App     string
+    Commit  string
+    Home    string
+    Version string
 }
 
 // common sets up the general user-specific configuration parameters
-func (s *Config) common() error {
+func (s *Config) common(a string, c string, v string) error {
     usrhome, errh := os.UserHomeDir()
     if errh != nil {
         return errh
     }
     s.Home = usrhome
+    s.App = a
+    s.Commit = c
+    s.Version = v
     return nil
 }
 
 // overrides sets up the overrides for various vendored packages
 func overrides() error {
 
-    t, errr := read.EmbeddedFileToString("/pkg/tpl/AppHelpTemplate.gotmpl")
+    // overrides the default cli AppHelpTemplate
+    aht, errr := read.EmbeddedFileToString("/pkg/tmpl/AppHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
+    cli.AppHelpTemplate = aht
 
-    // overrides the default cli AppHelpTemplate
-    cli.AppHelpTemplate = t
+    // overrides the default cli CommandHelpTemplate
+    cht, errr := read.EmbeddedFileToString("/pkg/tmpl/CommandHelpTemplate.gotmpl")
+    if errr != nil {
+        return errr
+    }
+    cli.CommandHelpTemplate = cht
+
+    // overrides the default cli SubcommandHelpTemplate
+    sht, errr := read.EmbeddedFileToString("/pkg/tmpl/SubcommandHelpTemplate.gotmpl")
+    if errr != nil {
+        return errr
+    }
+    cli.SubcommandHelpTemplate = sht
 
     // overrides the default cli VersionPrinter function
     cli.VersionPrinter = func(c *cli.Context) {
-        fmt.Printf("%s\n  SemVer: %s\n  Time:   %s\n  Commit: %s\n\n", c.App.Name, c.App.Version, c.App.Compiled, c.App.Metadata["Commit"])
+        fmt.Printf("SemVer: %s\n  Time: %s\nCommit: %s\n\n", c.App.Version, c.App.Compiled, c.App.Metadata["Commit"])
     }
     return nil
 
 }
 
 // Init sets up the environment for the app
-func Init() (*Config, error) {
+func Init(a string, c string, v string) (*Config, error) {
     s := Config{}
 
     erro := overrides()
     if erro != nil {
         return nil, erro
     }
-    errc := s.common()
+    errc := s.common(a, c, v)
     if errc != nil {
         return nil, errc
     }

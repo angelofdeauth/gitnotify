@@ -1,7 +1,7 @@
 /*
  * @File:     read.go
  * @Created:  2020-03-19 14:53:27
- * @Modified: 2020-03-19 16:29:31
+ * @Modified: 2020-03-19 17:04:36
  * @Author:   Antonio Escalera
  * @Commiter: Antonio Escalera
  * @Mail:     aj@angelofdeauth.host
