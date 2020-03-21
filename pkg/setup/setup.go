@@ -1,18 +1,14 @@
-/*
- * @File:     setup.go
- * @Created:  2020-03-19 14:47:11
- * @Modified: 2020-03-19 23:18:54
- * @Author:   Antonio Escalera
- * @Commiter: Antonio Escalera
- * @Mail:     aj@angelofdeauth.host
- * @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
- */
+// @File:     setup.go
+// @Created:  2020-03-21 03:57:46
+// @Modified: 2020-03-21 04:26:23
+// @Author:   Antonio Escalera
+// @Commiter: Antonio Escalera
+// @Mail:     aj@angelofdeauth.host
+// @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
 
-/* The `setup` package sets up and  automatically collected configuration information.
- * This information is collected before the cli.App context is created.
- * It is fed to the `app` package for processing when creating the cli.App context through the `main` package.
- */
-
+// Package setup collects configuration information.
+// This information is collected before the cli.App context is created.
+// It is fed to the `app` package for processing when creating the cli.App context through the `main` package.
 package setup
 
 import (
@@ -48,21 +44,21 @@ func (s *Config) common(a string, c string, v string) error {
 func overrides() error {
 
     // overrides the default cli AppHelpTemplate
-    aht, errr := read.EmbeddedFileToString("/pkg/tmpl/AppHelpTemplate.gotmpl")
+    aht, errr := read.EmbeddedFileToString("/AppHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
     cli.AppHelpTemplate = aht
 
     // overrides the default cli CommandHelpTemplate
-    cht, errr := read.EmbeddedFileToString("/pkg/tmpl/CommandHelpTemplate.gotmpl")
+    cht, errr := read.EmbeddedFileToString("/CommandHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
     cli.CommandHelpTemplate = cht
 
     // overrides the default cli SubcommandHelpTemplate
-    sht, errr := read.EmbeddedFileToString("/pkg/tmpl/SubcommandHelpTemplate.gotmpl")
+    sht, errr := read.EmbeddedFileToString("/SubcommandHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }

@@ -1,13 +1,12 @@
-/*
- * @File:     aut.go
- * @Created:  2020-03-19 18:48:14
- * @Modified: 2020-03-19 18:51:20
- * @Author:   Antonio Escalera
- * @Commiter: Antonio Escalera
- * @Mail:     aj@angelofdeauth.host
- * @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
- */
+// @File:     aut.go
+// @Created:  2020-03-19 18:51:21
+// @Modified: 2020-03-21 04:19:18
+// @Author:   Antonio Escalera
+// @Commiter: Antonio Escalera
+// @Mail:     aj@angelofdeauth.host
+// @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
 
+// Package aut sets up the Authors field.
 package aut
 
 import "github.com/urfave/cli/v2"

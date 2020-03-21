@@ -1,13 +1,12 @@
-/*
- * @File:     cmd.go
- * @Created:  2020-03-19 14:52:53
- * @Modified: 2020-03-19 19:05:29
- * @Author:   Antonio Escalera
- * @Commiter: Antonio Escalera
- * @Mail:     aj@angelofdeauth.host
- * @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
- */
+// @File:     cmd.go
+// @Created:  2020-03-19 19:05:29
+// @Modified: 2020-03-21 04:19:14
+// @Author:   Antonio Escalera
+// @Commiter: Antonio Escalera
+// @Mail:     aj@angelofdeauth.host
+// @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
 
+// Package cmd sets up the Command field.
 package cmd
 
 import "github.com/urfave/cli/v2"

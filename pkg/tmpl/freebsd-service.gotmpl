@@ -1,0 +1,53 @@
+#!/usr/bin/env sh
+# @File:     freebsd-service.gotmpl
+# @Created:  2020-03-20 19:37:03
+# @Modified: 2020-03-20 19:37:18
+# @OA:       Antonio Escalera
+# @CA:       Antonio Escalera
+# @Mail:     aj@angelofdeauth.host
+# @Copy:     Copyright © 2019 Antonio Escalera <aj@angelofdeauth.host>
+
+# $FreeBSD$
+# PROVIDE: xnotify
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+# Description:
+#    This script runs xnotify as a service on boot
+
+# How to use:
+#    Place this file in /usr/local/etc/rc.d/
+#    Add xnotify_enable="YES" to /etc/rc.config
+#    (Optional) To run as non-root, add xnotify_runAs="node-red" to /etc/rc.config
+#    (Optional) To pass Node-RED args, add xnotify_args="" to /etc/rc.config
+
+# Source FreeBSD rc library
+. /etc/rc.subr
+
+# General Info
+name="xnotify"            # program name
+title="xnotify"           # top/htop title
+
+# RC.config vars
+load_rc_config $name      # Loading rc config vars
+: ${xnotify_enable="NO"}  # Default: Do not enable Node-RED
+: ${xnotify_runAs="root"} # Default: Run Node-RED as root
+
+# Freebsd Setup
+rcvar=xnotify_enable                   # Enables the rc.conf YES/NO flag
+pidfile="/var/run/${name}.pid" # File that allows the system to keep track of node-red status
+
+# Env Setup
+export HOME=$( getent passwd "$xnotify_runAs" | cut -d: -f6 ) # Gets the home directory of the runAs user
+
+# Command Setup
+exec_path="/usr/local/bin/${name}" # Path to the node-red exec, /usr/local/bin/ when installed globally
+output_file="/var/log/${name}.log" # Path to Node-RED output file
+
+# Command
+command="/usr/sbin/daemon"
+command_args="-r -t ${title} -u ${xnotify_runAs} -o ${output_file} -P ${pidfile} ${exec_path} ${xnotify_args}"
+
+# Loading Config
+load_rc_config ${name}
+run_rc_command "$1"

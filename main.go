@@ -8,11 +8,7 @@
  * @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
  */
 
-/* `main.go` is the entrypoint for the application.
- *
- *
- */
-
+// Package main is the entry point of the application.
 package main
 
 import (
