@@ -1,6 +1,6 @@
 // @File:     cmd.go
 // @Created:  2020-03-19 19:05:29
-// @Modified: 2020-03-21 04:19:14
+// @Modified: 2020-03-23 15:46:40
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -9,10 +9,15 @@
 // Package cmd sets up the Command field.
 package cmd
 
-import "github.com/urfave/cli/v2"
+import (
+	"github.com/angelofdeauth/xnotify/pkg/service"
+	"github.com/urfave/cli/v2"
+)
 
 // Set sets the cli.App Commands field.
 func Set(a *cli.App) {
+	var serviceUser string
+
 	a.Commands = []*cli.Command{
 		{
 			Name:    "daemon",
@@ -61,7 +66,16 @@ func Set(a *cli.App) {
 			Aliases: []string{"s"},
 			Usage:   "Set up service file.",
 			Action: func(c *cli.Context) error {
-				return nil
+				return service.CreateStartupResources(serviceUser)
+			},
+			Flags: []cli.Flag{
+				&cli.StringFlag{
+					Name:        "user",
+					Aliases:     []string{"u"},
+					Usage:       "run service as `USER`",
+					Value:       "root",
+					Destination: &serviceUser,
+				},
 			},
 		},
 	}

@@ -1,3 +1,4 @@
+{{define "apphelptemplate" -}}
 NAME:
   {{.Name}}{{if .Usage}} - {{.Usage}}{{end}}{{if .Version}}{{if not .HideVersion}}
 
@@ -27,4 +28,5 @@ AUTHOR{{with $length := len .Authors}}{{if ne 1 $length}}S{{end}}{{end}}:
 
 COPYRIGHT:
   {{.Copyright}}{{end}}
-{{if .Name}}{{end}}
+{{end -}}
+{{template "apphelptemplate" .}}

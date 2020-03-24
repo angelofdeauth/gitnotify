@@ -14,7 +14,7 @@ BUILD_PATH=$(BUILD_DIR)/$(VERSION)/$(FILE_ARCH)
 INSTALL_PATH=/usr/local/bin
 LOG_PATH=$(LOG_DIR)/$(VERSION)/$(FILE_ARCH)
 
-.PHONY: default dirprep generate tidy vendor security build clean version install
+.PHONY: default dirprep doc generate tidy vendor security build clean version install
 
 default: clean build
 
@@ -23,6 +23,11 @@ dirprep:
 	@mkdir -p $(BUILD_PATH) && touch $(BUILD_PATH)/make.log
 	@mkdir -p $(LOG_PATH) && touch $(LOG_PATH)/make.log
 	@date -u \
+	  | tee -a $(BUILD_PATH)/make.log
+
+# Build templated documentation
+doc:
+	@echo "[OK] Documentation generated successfully!" \
 	  | tee -a $(BUILD_PATH)/make.log
 
 # Generate build-time dependencies
@@ -54,7 +59,7 @@ security:
 	  | tee -a $(BUILD_PATH)/make.log
 
 # Build binary
-build: dirprep generate tidy vendor security
+build: dirprep doc generate tidy vendor security
 	@GOARCH=$(ARCH) GOOS=$(OS) \
 	  go build \
 	  -a \

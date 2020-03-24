@@ -1,12 +1,12 @@
 // @File:     setup.go
 // @Created:  2020-03-21 03:57:46
-// @Modified: 2020-03-21 04:53:10
+// @Modified: 2020-03-23 19:26:25
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
 // @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
 
-// Package setup collects configuration information.
+// Package setup automatically collects system information.
 // This information is collected before the cli.App context is created.
 // It is fed to the `app` package for processing when creating the cli.App context through the `main` package.
 package setup
@@ -15,7 +15,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/angelofdeauth/xnotify/pkg/read"
+    "github.com/angelofdeauth/xnotify/pkg/box"
     "github.com/urfave/cli/v2"
 )
 
@@ -44,21 +44,21 @@ func (s *Config) common(a string, c string, v string) error {
 func overrides() error {
 
     // overrides the default cli AppHelpTemplate
-    aht, errr := read.EmbeddedTemplateToString("/AppHelpTemplate.gotmpl")
+    aht, errr := box.TemplateBox.ReadEmbeddedTemplateToString("/help/AppHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
     cli.AppHelpTemplate = aht
 
     // overrides the default cli CommandHelpTemplate
-    cht, errr := read.EmbeddedTemplateToString("/CommandHelpTemplate.gotmpl")
+    cht, errr := box.TemplateBox.ReadEmbeddedTemplateToString("/help/CommandHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }
     cli.CommandHelpTemplate = cht
 
     // overrides the default cli SubcommandHelpTemplate
-    sht, errr := read.EmbeddedTemplateToString("/SubcommandHelpTemplate.gotmpl")
+    sht, errr := box.TemplateBox.ReadEmbeddedTemplateToString("/help/SubcommandHelpTemplate.gotmpl")
     if errr != nil {
         return errr
     }

@@ -1,7 +1,8 @@
+{{define "commandhelptemplate" -}}
 NAME:
    {{.HelpName}} - {{.Usage}}{{if .Description}}
 
-DESCRIPTION:
+COMMAND DESCRIPTION:
    {{.Description}}{{end}}
 
 USAGE:
@@ -13,4 +14,5 @@ CATEGORY:
 OPTIONS:
    {{range .VisibleFlags}}{{.}}
    {{end}}{{end}}
-{{if .Name}}{{end}}
+{{- end -}}
+{{template "commandhelptemplate" .}}
