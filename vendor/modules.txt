@@ -1,6 +1,9 @@
 # github.com/cpuguy83/go-md2man/v2 v2.0.0
 ## explicit
 github.com/cpuguy83/go-md2man/v2/md2man
+# github.com/gobuffalo/here v0.6.0
+## explicit
+github.com/gobuffalo/here
 # github.com/klauspost/compress v1.10.3
 ## explicit
 github.com/klauspost/compress/fse

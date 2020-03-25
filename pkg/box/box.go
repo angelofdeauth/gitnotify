@@ -1,6 +1,6 @@
 // @File:     box.go
 // @Created:  2020-03-21 03:19:10
-// @Modified: 2020-03-23 23:24:38
+// @Modified: 2020-03-24 21:35:10
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -23,7 +23,7 @@ var EmbedDecoder, _ = zstd.NewReader(nil)
 // EmbedBox is the container type for embedded paths.
 // The files within are stored as CompressedFiles.
 type EmbedBox struct {
-	Path    string
+	Path    string // path, with / being the root directory (directory of `go env gomod`) of the project
 	Storage []CompressedFile
 }
 

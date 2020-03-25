@@ -1,11 +1,11 @@
 # Vars, can be changed via the environment
 APP?=xnotify
 ARCH?=amd64
+BOX_BLOBFILE=pkg/box/blob.go
 BUILD_DIR?=bin
 LOG_DIR?=doc/log/build_history
 OS?=linux
-PKGER_DIR?=pkg/read
-PKGER_INCLUDES?=-include /pkg/tmpl
+RELEASE?=false
 VERSION?=v0.0.1
 
 # Complex Vars, built from the variables above and environment variables
@@ -32,6 +32,8 @@ doc:
 
 # Generate build-time dependencies
 generate:
+	@rm -rf $(BOX_BLOBFILE) 2>&1 \
+	  | tee -a $(BUILD_PATH)/make.log
 	@go generate ./... 2>&1 \
 	  | tee -a $(BUILD_PATH)/make.log
 	@echo "[OK] Go generate scripts completed successfully!" \
