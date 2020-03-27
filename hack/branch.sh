@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     branch.sh
 # @Created:  2020-03-26 21:59:49
-# @Modified: 2020-03-26 23:25:28
+# @Modified: 2020-03-27 01:05:24
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -16,9 +16,10 @@ set -ex
 cd "$(dirname "$0")/../"
 
 git pull
-if ! git show-ref --verify --quiet refs/heads/"${1}"; then
+if (! git show-ref --verify --quiet refs/heads/"${1}") && [ -n "${1}" ]; then
   git checkout -b "${1}"
-  git branch -u origin/"${1}"
+  git push --set-upstream origin "${1}"
+  git branch -a
 else
-  echo "[ERROR]: Branch ${1} already exists."
+  echo "[ERROR]: Branch ${1} is null or already exists."
 fi
