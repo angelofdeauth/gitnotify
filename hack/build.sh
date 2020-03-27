@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     build.sh
 # @Created:  2020-03-25 14:57:39
-# @Modified: 2020-03-26 19:27:21
+# @Modified: 2020-03-26 20:06:01
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host

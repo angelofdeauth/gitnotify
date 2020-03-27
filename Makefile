@@ -1,4 +1,4 @@
-# Vars, cannot be changed via environment.
+# Vars, cannot be changed via environment
 MINIMUM_GO_VERSION=1.13
 
 # Vars, can be changed via the environment
@@ -7,18 +7,22 @@ ARCH?=amd64
 BOX_BLOBFILE=pkg/box/blob.go
 BUILD_DIR?=bin
 HACK_DIR?=hack
+INSTALL_PATH=/usr/local/bin
 LOG_DIR?=doc/log/build_history
 OS?=linux
 RELEASE?=false
 
+# Vars, automatically populated
+COMMIT=$(shell git rev-parse --verify 'HEAD^{commit}')
+CURR_GO_VERSION=$(shell go version | grep go | cut -d " " -f 3)
+VERSION=$(shell git describe --always --abbrev=40 --dirty)
+SEMVER=$(shell git describe --always --abbrev=40 --dirty | cut -d'-' -f1)
+
 # Complex Vars, built from the variables above and environment variables
 FILE_ARCH=$(OS)_$(ARCH)
-BUILD_PATH=$(BUILD_DIR)/$(VERSION)/$(FILE_ARCH)
-INSTALL_PATH=/usr/local/bin
-LOG_PATH=$(LOG_DIR)/$(VERSION)/$(FILE_ARCH)
-CURR_GO_VERSION=$(shell go version | grep go | cut -d " " -f 3)
-VERSION?=$(shell git describe --always --abbrev=40 --dirty)
-COMMIT=$(shell git rev-parse --verify 'HEAD^{commit}')
+BUILD_PATH=$(BUILD_DIR)/$(SEMVER)/$(FILE_ARCH)
+LOG_PATH=$(LOG_DIR)/$(SEMVER)/$(FILE_ARCH)
+
 
 .PHONY: default build clean dir-prep doc go-generate go-goimports go-lint go-sec go-test go-tidy go-vendor go-verify go-vet install release shellcheck version yaml-lint
 .EXPORT_ALL_VARIABLES:
@@ -26,12 +30,15 @@ COMMIT=$(shell git rev-parse --verify 'HEAD^{commit}')
 default: clean build
 
 # Build binary
-build: dir-prep go-tidy go-vendor doc go-goimports go-lint go-generate go-vet go-verify go-sec shellcheck yaml-lint
+build: dir-prep doc code-prep
 	@hack/build.sh
 
 # Delete old build directory, clear out old log
 clean:
 	@hack/clean.sh
+
+# Prepare the code for building
+code-prep: go-tidy go-vendor go-goimports go-lint go-generate go-vet go-verify go-sec shellcheck yaml-lint
 
 # Prepare build and log directories
 dir-prep:
