@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     pr-close.sh
 # @Created:  2020-03-27 01:04:32
-# @Modified: 2020-03-27 01:50:38
+# @Modified: 2020-03-27 02:08:14
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -17,15 +17,17 @@ fi
 
 mergefn() {
   git fetch origin
-  git checkout -b feature/build/make/create-prs-for-new-branches origin/feature/build/make/create-prs-for-new-branches
+  git checkout -b "${BRANCH}" origin/"${BRANCH}"
   git merge master
   git checkout master
-  git merge --no-ff feature/build/make/create-prs-for-new-branches
+  git merge --no-ff "${BRANCH}"
   git push origin master
+  git branch -d "${BRANCH}"
+  git push origin --delete "${BRANCH}"
 }
 
 if mergefn; then
-  echo "[OK] PR merged successfully!"
+  echo "[OK] PR for branch ${BRANCH} merged successfully!"
 else
-  echo "[ERROR] PR merge failed!"
+  echo "[ERROR] PR for branch ${BRANCH} merge failed!"
 fi
