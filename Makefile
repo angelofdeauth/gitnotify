@@ -24,14 +24,14 @@ BUILD_PATH=$(BUILD_DIR)/$(SEMVER)/$(FILE_ARCH)
 LOG_PATH=$(LOG_DIR)/$(SEMVER)/$(FILE_ARCH)
 
 
-.PHONY: default branch build clean code-prep commit dir-prep doc go-generate go-goimports go-lint go-sec go-test go-tidy go-vendor go-verify go-vet install release shellcheck version yaml-lint
+.PHONY: default branch build clean code-prep commit dir-prep doc go-generate go-goimports go-lint go-sec go-test go-tidy go-vendor go-verify go-vet install pr pr-close release shellcheck version yaml-lint
 .EXPORT_ALL_VARIABLES:
 
 default: clean doc code-prep build
 
 # Make a new branch
 branch:
-	@hack/branch.sh $(NAME)
+	@hack/branch.sh
 
 # Build binary
 build: dir-prep 
@@ -96,9 +96,17 @@ go-vet:
 install:
 	@hack/install.sh
 
+# Make a PR for the current branch or branch specified with `BRANCH=branch make pr`
+pr:
+	@hack/pr.sh
+
+# Merge current branch or branch specified with `BRANCH=branch make pr-close` to master
+pr-close:
+	@hack/pr-close.sh
+
 # Build release
 release: clean dir-prep code-prep doc
-	@hack/release.sh $(VERSION)
+	@hack/release.sh
 
 # Run shellcheck
 shellcheck:
