@@ -1,14 +1,12 @@
 // @File:     generator.go
 // @Created:  2020-03-21 03:14:43
-// @Modified: 2020-03-25 03:41:07
+// @Modified: 2020-03-25 12:58:31
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
 // @Copy:     Copyright © 2020 Antonio Escalera <aj@angelofdeauth.host>
 
-//+build ignore
-
-// figure out how to use filepath.Dir() to have multiple boxes
+// +build box
 
 package main
 
