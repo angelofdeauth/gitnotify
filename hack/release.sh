@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     release.sh
 # @Created:  2020-03-25 16:21:59
-# @Modified: 2020-03-26 21:03:01
+# @Modified: 2020-03-26 22:21:59
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -16,7 +16,6 @@ set -ex
 cd "$(dirname "$0")/../"
 
 TAG="${1}"
-
 
 make build # ensure freshly-generated data
 for GOOS in darwin linux windows; do
