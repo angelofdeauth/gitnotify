@@ -24,10 +24,14 @@ BUILD_PATH=$(BUILD_DIR)/$(SEMVER)/$(FILE_ARCH)
 LOG_PATH=$(LOG_DIR)/$(SEMVER)/$(FILE_ARCH)
 
 
-.PHONY: default build clean code-prep commit dir-prep doc go-generate go-goimports go-lint go-sec go-test go-tidy go-vendor go-verify go-vet install release shellcheck version yaml-lint
+.PHONY: default branch build clean code-prep commit dir-prep doc go-generate go-goimports go-lint go-sec go-test go-tidy go-vendor go-verify go-vet install release shellcheck version yaml-lint
 .EXPORT_ALL_VARIABLES:
 
 default: clean doc code-prep build
+
+# Make a new branch
+branch:
+	@hack/branch.sh $(NAME) $(ORIGIN)
 
 # Build binary
 build: dir-prep 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     branch.sh
 # @Created:  2020-03-26 21:59:49
-# @Modified: 2020-03-26 22:20:54
+# @Modified: 2020-03-26 23:00:17
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -11,14 +11,16 @@
 #
 #   $ hack/branch.sh BRANCHNAME [ORIGIN]
 
-git fetch
-if git show-ref --verify --quiet refs/heads/"${1}"; then
+set -ex
+
+cd "$(dirname "$0")/../"
+
+git fetch --all
+if ! git show-ref --verify --quiet refs/heads/"${1}"; then
   if [ -z "${2}" ]; then 
-    git checkout -b "${1}" origin/"${1}"
-    git branch --set-upstream "${1}" origin/"${1}"
+    git checkout -t -b "${1}" origin/"${1}"
   else
-    git checkout -b "${1}" "${2}"/"${1}"
-    git branch --set-upstream "${1}" "${2}"/"${1}"
+    git checkout -t -b "${1}" "${2}"/"${1}"
   fi
 else
   echo "[ERROR]: Branch ${1} already exists."
