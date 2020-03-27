@@ -31,7 +31,7 @@ default: clean doc code-prep build
 
 # Make a new branch
 branch:
-	@hack/branch.sh $(NAME) $(ORIGIN)
+	@hack/branch.sh $(NAME)
 
 # Build binary
 build: dir-prep 
