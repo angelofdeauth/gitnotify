@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     dir-prep.sh
 # @Created:  2020-03-25 17:25:25
-# @Modified: 2020-03-26 19:28:00
+# @Modified: 2020-03-26 21:24:44
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -18,8 +18,6 @@ dirPrep() {
 
 # Prepare build and log directories
 if [ "$RELEASE" = "true" ]; then
-  mkdir -p "${LOG_PATH}" && touch "${LOG_PATH}"/make.log 2>&1 | tee -a "${BUILD_PATH}"/make.log
-  dirPrep 2>&1 | tee -a "${BUILD_PATH}"/make.log
-else
-  dirPrep 2>&1 | tee -a "${BUILD_PATH}"/make.log
+  mkdir -p "${LOG_PATH}" && touch "${LOG_PATH}"/make.log
 fi
+dirPrep

@@ -24,13 +24,13 @@ BUILD_PATH=$(BUILD_DIR)/$(SEMVER)/$(FILE_ARCH)
 LOG_PATH=$(LOG_DIR)/$(SEMVER)/$(FILE_ARCH)
 
 
-.PHONY: default build clean dir-prep doc go-generate go-goimports go-lint go-sec go-test go-tidy go-vendor go-verify go-vet install release shellcheck version yaml-lint
+.PHONY: default build clean code-prep commit dir-prep doc go-generate go-goimports go-lint go-sec go-test go-tidy go-vendor go-verify go-vet install release shellcheck version yaml-lint
 .EXPORT_ALL_VARIABLES:
 
-default: clean build
+default: clean doc code-prep build
 
 # Build binary
-build: dir-prep doc code-prep
+build: dir-prep 
 	@hack/build.sh
 
 # Delete old build directory, clear out old log
@@ -39,6 +39,10 @@ clean:
 
 # Prepare the code for building
 code-prep: go-tidy go-vendor go-goimports go-lint go-generate go-vet go-verify go-sec shellcheck yaml-lint
+
+# Create a new commit for all of the changes in the current directory
+commit: clean dir-prep code-prep doc
+	@hack/commit.sh
 
 # Prepare build and log directories
 dir-prep:
@@ -89,7 +93,7 @@ install:
 	@hack/install.sh
 
 # Build release
-release:
+release: clean dir-prep code-prep doc
 	@hack/release.sh $(VERSION)
 
 # Run shellcheck

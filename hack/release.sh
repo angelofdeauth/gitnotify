@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     release.sh
 # @Created:  2020-03-25 16:21:59
-# @Modified: 2020-03-26 19:27:48
+# @Modified: 2020-03-26 21:03:01
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -17,7 +17,7 @@ cd "$(dirname "$0")/../"
 
 TAG="${1}"
 
-git tag -sm "version ${TAG}" "${TAG}"
+
 make build # ensure freshly-generated data
 for GOOS in darwin linux windows; do
   GOARCH=amd64
@@ -26,5 +26,9 @@ for GOOS in darwin linux windows; do
   sha512sum "${RELEASE_PATH}"/* >"${RELEASE_PATH}"/release.sha512
   gpg --output "${RELEASE_PATH}"/release.sha512.sig --detach-sig "${RELEASE_PATH}"/release.sha512
 done
+
+git add .
+git commit
+git tag -sm "version ${TAG}" "${TAG}"
 
 echo "[OK] Release build completed!"

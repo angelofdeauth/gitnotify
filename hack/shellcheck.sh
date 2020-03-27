@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     shellcheck.sh
 # @Created:  2020-03-25 16:22:10
-# @Modified: 2020-03-26 19:27:48
+# @Modified: 2020-03-26 21:47:00
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -14,13 +14,9 @@ cd "$(dirname "$0")/../"
 containerFunc() {
   TOP_DIR="${1:-.}"
     find "${TOP_DIR}" \
-      -path "${TOP_DIR}/vendor" -prune \
-      -o -path "${TOP_DIR}/.build" -prune \
-      -o -path "${TOP_DIR}/tests/smoke/vendor" -prune \
-      -o -path "${TOP_DIR}/tests/bdd-smoke/vendor" -prune \
-      -o -path "${TOP_DIR}/tests/smoke/.build" -prune \
-      -o -path "${TOP_DIR}/pkg/terraform/exec/plugins/vendor" -prune \
-      -o -type f -name '*.sh' -exec shellcheck --format=diff {} \+
+      -path "${TOP_DIR}/vendor" \
+      -prune -o -type f -name '*.sh' \
+      -exec shellcheck --format=tty {} \+
   echo "[OK] Shellcheck completed!"
 }
 
