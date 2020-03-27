@@ -16,7 +16,7 @@ RELEASE?=false
 COMMIT=$(shell git rev-parse --verify 'HEAD^{commit}')
 CURR_GO_VERSION=$(shell go version | grep go | cut -d " " -f 3)
 VERSION=$(shell git describe --always --abbrev=40 --dirty)
-SEMVER=$(shell git describe --always --abbrev=40 --dirty | cut -d'-' -f1)
+SEMVER=$(shell git describe --always --abbrev=0)
 
 # Complex Vars, built from the variables above and environment variables
 FILE_ARCH=$(OS)_$(ARCH)
