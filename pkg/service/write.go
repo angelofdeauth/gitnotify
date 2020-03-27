@@ -1,6 +1,6 @@
 // @File:     write.go
 // @Created:  2020-03-23 15:25:31
-// @Modified: 2020-03-24 02:58:11
+// @Modified: 2020-03-27 17:58:39
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -9,51 +9,36 @@
 package service
 
 import (
-	"os"
-	"path/filepath"
-	"text/template"
+  "github.com/angelofdeauth/xnotify/pkg/box"
 )
 
-// owners is the file ownership structure.
-type owners struct {
-	uid int
-	gid int
-}
+// createResourcesForUser generic function for creating resource files.
+// inputs: username (string), template path in box (string), root destination path (string), user destination path (string)
+func createResourceForUser(u string, tpth string, rpth string, upth string) error {
 
-// WriteFileFromTemplate creates startup resources from given templates.
-func WriteFileFromTemplate(input string, outpath string, outmod os.FileMode, outown owners, config interface{}) error {
+  // set up fileAttributes
+  fa := box.NewFileAttributes()
+  fa.TemplatePath = tpth
 
-	// create directory (if required)
-	d := filepath.Dir(outpath)
-	if _, errs := os.Stat(d); os.IsNotExist(errs) {
-		if err := os.MkdirAll(d, 0750); err != nil {
-			return err
-		}
-	}
+  // switch behavior based on status of the `-u/--user` flag.
+  if u == "root" {
 
-	// create file
-	file, errc := os.Create(outpath)
-	if errc != nil {
-		return errc
-	}
+    // default option, no user flag specified.
+    fa.OutputPath = rpth
 
-	// create template from loaded string
-	t := template.Must(template.New("input").Parse(input))
+  } else {
 
-	// render template to file
-	if errr := t.Execute(file, config); errr != nil {
-		return errr
-	}
+    // user specified from flag or unspecified.
+    err := fa.SetFileAttributesForUser(u, upth)
+    if err != nil {
+      return err
+    }
+  }
 
-	// change mode of file
-	if errm := os.Chmod(outpath, outmod); errm != nil {
-		return errm
-	}
+  // send set up variables to be rendered through fileFromTemplate
+  if err := box.Template.WriteFileFromTemplate(fa, nil); err != nil {
+    return err
+  }
 
-	// change ownership of file
-	if erro := os.Chown(outpath, outown.uid, outown.gid); erro != nil {
-		return erro
-	}
-
-	return file.Close()
+  return nil
 }
