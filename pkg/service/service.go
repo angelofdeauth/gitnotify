@@ -1,6 +1,6 @@
 // @File:     service.go
 // @Created:  2020-03-21 12:50:33
-// @Modified: 2020-03-23 19:30:29
+// @Modified: 2020-03-27 21:19:39
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -18,13 +18,13 @@ import (
 func CreateStartupResources(u string) error {
 	switch os := runtime.GOOS; os {
 	case "darwin":
-		return createLaunchdJobDarwin(u)
+		return createStartupRscDarwin(u)
 	case "freebsd":
-		return createServiceFileFreeBSD(u)
+		return createStartupRscFreeBSD(u)
 	case "linux":
-		return createServiceFileLinux(u)
+		return createStartupRscLinux(u)
 	case "windows":
-		return createRegistryKeysWindows(u)
+		return createStartupRscWindows(u)
 	default:
 		return fmt.Errorf("Unsupported operating system: %s", os)
 	}

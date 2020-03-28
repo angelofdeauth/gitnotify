@@ -8,45 +8,45 @@
 # @Copy:     Copyright © 2019 Antonio Escalera <aj@angelofdeauth.host>
 
 # $FreeBSD$
-# PROVIDE: xnotify
+# PROVIDE: {{ .Name }}
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
 
 # Description:
-#    This script runs xnotify as a service on boot
+#    This script runs {{ .Name }} as a service on boot
 
 # How to use:
-#    Place this file in /usr/local/etc/rc.d/
-#    Add xnotify_enable="YES" to /etc/rc.config
-#    (Optional) To run as non-root, add xnotify_runAs="node-red" to /etc/rc.config
-#    (Optional) To pass Node-RED args, add xnotify_args="" to /etc/rc.config
+#    Place this file in /etc/rc.d/
+#    Add {{ .Name }}_enable="YES" to /etc/rc.config
+#    (Optional) To run as non-root, add {{ .Name }}_runAs="user" to /etc/rc.config
+#    (Optional) To pass {{ .Name }} args, add {{ .Name }}_args="" to /etc/rc.config
 
 # Source FreeBSD rc library
 . /etc/rc.subr
 
-# General Info
-name="xnotify"            # program name
-title="xnotify"           # top/htop title
+# General info
+name="{{ .Name }}"            # program name
+title="{{ .Name }}"           # top/htop title
 
-# RC.config vars
+# rc.config vars
 load_rc_config $name      # Loading rc config vars
-: ${xnotify_enable="NO"}  # Default: Do not enable Node-RED
-: ${xnotify_runAs="root"} # Default: Run Node-RED as root
+: ${{{ .Name }}_enable="NO"}  # Default: Do not enable {{ .Name }}
+: ${{{ .Name }}_runAs="{{ .User }}"} # Default: Run {{ .Name }} as root
 
-# Freebsd Setup
-rcvar=xnotify_enable                   # Enables the rc.conf YES/NO flag
-pidfile="/var/run/${name}.pid" # File that allows the system to keep track of node-red status
+# FreeBSD Setup
+rcvar={{ .Name }}_enable                   # Enables the rc.conf YES/NO flag
+pidfile="/var/run/${name}.pid" # File that allows the system to keep track of xnotify status
 
 # Env Setup
-export HOME=$( getent passwd "$xnotify_runAs" | cut -d: -f6 ) # Gets the home directory of the runAs user
+export HOME=$( getent passwd "${{ .Name }}_runAs" | cut -d: -f6 ) # Gets the home directory of the runAs user
 
 # Command Setup
-exec_path="/usr/local/bin/${name}" # Path to the node-red exec, /usr/local/bin/ when installed globally
-output_file="/var/log/${name}.log" # Path to Node-RED output file
+exec_path="{{ .InstallPath }}" # Path to the {{ .Name }} exec, /usr/local/bin/ when installed globally
+output_file="/var/log/${name}.log" # Path to {{ .Name }} output file
 
 # Command
 command="/usr/sbin/daemon"
-command_args="-r -t ${title} -u ${xnotify_runAs} -o ${output_file} -P ${pidfile} ${exec_path} ${xnotify_args}"
+command_args="-r -t ${title} -u ${{{ .Name }}_runAs} -o ${output_file} -P ${pidfile} ${exec_path} ${{{ .Name }}_args}"
 
 # Loading Config
 load_rc_config ${name}
