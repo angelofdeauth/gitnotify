@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     go-lint.sh
 # @Created:  2020-03-25 16:21:26
-# @Modified: 2020-03-26 19:27:55
+# @Modified: 2020-03-27 17:42:26
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -12,9 +12,11 @@ set -ex
 cd "$(dirname "$0")/../"
 
 containerFunc() {
-  cd /tmp
-  go get -u golang.org/x/lint/golint
-  cd -
+  if ! command -v golint >/dev/null; then
+    cd /tmp
+    go get -u golang.org/x/lint/golint
+    cd -
+  fi
   for TARGET in "${@}"; do
     find "${TARGET}" \
       -name '*.go' \

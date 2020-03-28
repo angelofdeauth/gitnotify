@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     go-goimports.sh
 # @Created:  2020-03-25 15:05:46
-# @Modified: 2020-03-26 19:27:56
+# @Modified: 2020-03-27 17:41:08
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -12,9 +12,11 @@ set -ex
 cd "$(dirname "$0")/../"
 
 containerFunc() {
-  cd /tmp
-  go get golang.org/x/tools/cmd/goimports
-  cd -
+  if ! command -v goimports >/dev/null; then
+    cd /tmp
+    go get golang.org/x/tools/cmd/goimports
+    cd -
+  fi
   for TARGET in "${@}"; do
     find "${TARGET}" \
       -name '*.go' \
