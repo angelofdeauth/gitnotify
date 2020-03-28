@@ -1,6 +1,6 @@
 // @File:     file.go
 // @Created:  2020-03-27 16:46:58
-// @Modified: 2020-03-27 19:02:04
+// @Modified: 2020-03-27 21:57:53
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -53,7 +53,9 @@ func (fa *FileAttributes) SetFileAttributesForUser(u string, path string) error 
     return err
   }
 
-  fa.OutputPath = filepath.Join(usr.HomeDir, path)
+  if path[0:1] != "/" {
+    fa.OutputPath = filepath.Join(usr.HomeDir, path)
+  }
 
   fa.Owners.UID, err = strconv.Atoi(usr.Uid)
   if err != nil {
