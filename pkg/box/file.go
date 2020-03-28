@@ -1,6 +1,6 @@
 // @File:     file.go
 // @Created:  2020-03-27 16:46:58
-// @Modified: 2020-03-27 18:41:56
+// @Modified: 2020-03-27 19:02:04
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -26,6 +26,8 @@ type FileAttributes struct {
   TemplatePath string // the path of the template in the box
 }
 
+// getUserObject returns the user object corresponding to the string passed.
+// if no string is passed, it returns user object for the current user.
 func getUserObject(u string) (*user.User, error) {
 
   if u == "" {
@@ -47,6 +49,9 @@ func getUserObject(u string) (*user.User, error) {
 func (fa *FileAttributes) SetFileAttributesForUser(u string, path string) error {
 
   usr, err := getUserObject(u)
+  if err != nil {
+    return err
+  }
 
   fa.OutputPath = filepath.Join(usr.HomeDir, path)
 

@@ -1,6 +1,6 @@
 // @File:     generator.go
 // @Created:  2020-03-21 03:14:43
-// @Modified: 2020-03-27 17:48:54
+// @Modified: 2020-03-27 19:11:46
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -109,23 +109,28 @@ func compress(ee *zstd.Encoder, b []byte) []byte {
 func fmtByteSlice(b []byte) string {
 
     builder := strings.Builder{}
+
+    // compress byte buffer using cached encoder
     c := compress(EmbedEncoder, b)
 
+    // build the string from the newly compressed buffer
     for _, v := range c {
         builder.WriteString(fmt.Sprintf("%d,", int(v)))
     }
+
+    EmbedEncoder.Reset(nil)
 
     return builder.String()
 }
 
 func main() {
 
+    // get the on-disk root directory of the Config.Module
     her, err := here.Package(genConf.Module)
     if err != nil {
         panic(err)
         return
     }
-
     root := her.Module.Dir
 
     for bxIdx, bxCfg := range genConf.BoxConfigs {
@@ -195,6 +200,7 @@ func main() {
             panic(err)
         }
 
+        // Close file
         if err = f.Close(); err != nil {
             panic(err)
         }
