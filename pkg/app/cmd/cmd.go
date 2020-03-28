@@ -1,6 +1,6 @@
 // @File:     cmd.go
 // @Created:  2020-03-19 19:05:29
-// @Modified: 2020-03-23 15:46:40
+// @Modified: 2020-03-28 04:28:27
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -16,7 +16,7 @@ import (
 
 // Set sets the cli.App Commands field.
 func Set(a *cli.App) {
-	var serviceUser string
+	var sf service.Flags
 
 	a.Commands = []*cli.Command{
 		{
@@ -66,7 +66,7 @@ func Set(a *cli.App) {
 			Aliases: []string{"s"},
 			Usage:   "Set up service file.",
 			Action: func(c *cli.Context) error {
-				return service.CreateStartupResources(serviceUser)
+				return sf.CreateStartupResources()
 			},
 			Flags: []cli.Flag{
 				&cli.StringFlag{
@@ -74,7 +74,21 @@ func Set(a *cli.App) {
 					Aliases:     []string{"u"},
 					Usage:       "run service as `USER`",
 					Value:       "root",
-					Destination: &serviceUser,
+					Destination: &sf.User,
+				},
+				&cli.StringFlag{
+					Name:        "install-dir",
+					Aliases:     []string{"i"},
+					Usage:       "point service file to `FILE`",
+					Value:       "",
+					Destination: &sf.InstallDir,
+				},
+				&cli.StringFlag{
+					Name:        "output-dir",
+					Aliases:     []string{"o"},
+					Usage:       "output rendered service resources to `DIR`",
+					Value:       "",
+					Destination: &sf.OutputDir,
 				},
 			},
 		},
