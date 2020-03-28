@@ -53,7 +53,10 @@ To run the scripts individually, you must export all of the variables in the `Ma
 ### New Commits
 
 The existing build tools can aid in making new commits.
-If all of the changes which have been made are to be added to the same commit, `make commit` from the repository root directory will perform all necessary automation and prompt the user for a commit message.
+If there are tracked files with cached changes ( added via `git add 'filename'`), only the cached changes will be automatically used.
+If there are tracked files with uncached changes, all changes will be added to the commit (including new files).
+If there are only new files, all changes will be added to the commit.
+`make commit` from the repository root directory will perform all necessary automation and prompt the user for a commit message.
 
 ### Tagging a new version
 
@@ -66,7 +69,9 @@ VERSION=DESIRED_VERSION make release
 ### TODO
 
 > TODO: set up pipelines for creating custom images which only contain the tools required per build step.
+
 > TODO: set up pipelines for updating the tools in the custom images
+
 > TODO: set up pipeline for updating the referenced version of images in the `hack/` scripts.
 
 
