@@ -1,6 +1,6 @@
 // @File:     service.go
 // @Created:  2020-03-21 12:50:33
-// @Modified: 2020-03-28 04:27:59
+// @Modified: 2020-03-28 16:17:19
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -14,33 +14,34 @@ import (
 	"runtime"
 )
 
-// Flags is the object for the flags passed to the service command.
-type Flags struct {
-	InstallDir string
-	OutputDir  string
-	User       string
+// Config is the object for the flags passed to the service command.
+type Config struct {
+	App         string
+	InstallPath string
+	OutputPath  string
+	User        string
 }
 
-// getInstallDirDefault returns the Flags.InstallDir field if set, or the passed string otherwise.
-func (sf *Flags) getInstallDirDefault(str string) string {
+// getInstallPathD returns the Config.InstallPath field if set, or the passed string otherwise.
+func (sf *Config) getInstallPathD(str string) string {
 
-	if sf.InstallDir == "" {
+	if sf.InstallPath == "" {
 		return str
 	}
-	return sf.InstallDir
+	return sf.InstallPath
 }
 
-// getOutputDirDefault returns the Flags.OutputDir field if set, or the passed string otherwise.
-func (sf *Flags) getOutputDirDefault(str string) string {
+// getOutputPathD returns the Config.OutputPath field if set, or the passed string otherwise.
+func (sf *Config) getOutputPathD(str string) string {
 
-	if sf.OutputDir == "" {
+	if sf.OutputPath == "" {
 		return str
 	}
-	return sf.OutputDir
+	return sf.OutputPath
 }
 
 // CreateStartupResources creates the required resources to start the service on boot.
-func (sf *Flags) CreateStartupResources() error {
+func (sf *Config) CreateStartupResources() error {
 	switch os := runtime.GOOS; os {
 	case "darwin":
 		return sf.createStartupRscDarwin()

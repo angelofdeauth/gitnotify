@@ -8,45 +8,45 @@
 # @Copy:     Copyright © 2019 Antonio Escalera <aj@angelofdeauth.host>
 
 # $FreeBSD$
-# PROVIDE: {{ .Name }}
+# PROVIDE: {{ .App }}
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
 
 # Description:
-#    This script runs {{ .Name }} as a service on boot
+#    This script runs {{ .App }} as a service on boot
 
 # How to use:
 #    Place this file in /etc/rc.d/
-#    Add {{ .Name }}_enable="YES" to /etc/rc.config
-#    (Optional) To run as non-root, add {{ .Name }}_runAs="user" to /etc/rc.config
-#    (Optional) To pass {{ .Name }} args, add {{ .Name }}_args="" to /etc/rc.config
+#    Add {{ .App }}_enable="YES" to /etc/rc.config
+#    (Optional) To run as non-root, add {{ .App }}_runAs="user" to /etc/rc.config
+#    (Optional) To pass {{ .App }} args, add {{ .App }}_args="" to /etc/rc.config
 
 # Source FreeBSD rc library
 . /etc/rc.subr
 
 # General info
-name="{{ .Name }}"            # program name
-title="{{ .Name }}"           # top/htop title
+name="{{ .App }}"            # program name
+title="{{ .App }}"           # top/htop title
 
 # rc.config vars
 load_rc_config $name      # Loading rc config vars
-: ${{{ .Name }}_enable="NO"}  # Default: Do not enable {{ .Name }}
-: ${{{ .Name }}_runAs="{{ .User }}"} # Default: Run {{ .Name }} as root
+: ${{{ .App }}_enable="NO"}  # Default: Do not enable {{ .App }}
+: ${{{ .App }}_runAs="{{ .User }}"} # Default: Run {{ .App }} as root
 
 # FreeBSD Setup
-rcvar={{ .Name }}_enable                   # Enables the rc.conf YES/NO flag
+rcvar={{ .App }}_enable                   # Enables the rc.conf YES/NO flag
 pidfile="/var/run/${name}.pid" # File that allows the system to keep track of xnotify status
 
 # Env Setup
-export HOME=$( getent passwd "${{ .Name }}_runAs" | cut -d: -f6 ) # Gets the home directory of the runAs user
+export HOME=$( getent passwd "${{ .App }}_runAs" | cut -d: -f6 ) # Gets the home directory of the runAs user
 
 # Command Setup
-exec_path="{{ .InstallPath }}" # Path to the {{ .Name }} exec, /usr/local/bin/ when installed globally
-output_file="/var/log/${name}.log" # Path to {{ .Name }} output file
+exec_path="{{ .InstallPath }}" # Path to the {{ .App }} exec, /usr/local/bin/ when installed globally
+output_file="/var/log/${name}.log" # Path to {{ .App }} output file
 
 # Command
 command="/usr/sbin/daemon"
-command_args="-r -t ${title} -u ${{{ .Name }}_runAs} -o ${output_file} -P ${pidfile} ${exec_path} ${{{ .Name }}_args}"
+command_args="-r -t ${title} -u ${{{ .App }}_runAs} -o ${output_file} -P ${pidfile} ${exec_path} ${{{ .App }}_args}"
 
 # Loading Config
 load_rc_config ${name}
