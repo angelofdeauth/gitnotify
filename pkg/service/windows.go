@@ -1,6 +1,6 @@
 // @File:     windows.go
 // @Created:  2020-03-23 19:30:08
-// @Modified: 2020-03-27 17:30:11
+// @Modified: 2020-03-28 03:59:31
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -8,7 +8,10 @@
 
 package service
 
-// createRegistryKeysWindows creates startup registry keys windows based systems.
-func createRegistryKeysWindows(u string) error {
-	return createResourceForUser(u, "/service/windows-registry.reg.gotmpl", "", "")
+// createStartupRscWindows creates startup registry keys windows based systems.
+func (sf *Flags) createStartupRscWindows() error {
+
+	return sf.createResourceForUser("/service/windows-registry.reg.gotmpl",
+		"C:\\Program Files\\xnotify\\xnotify.reg",
+		"AppData\\Roaming\\xnotify\\xnotify.reg")
 }

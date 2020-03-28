@@ -1,0 +1,15 @@
+[Unit]
+Description={{ .Name }}
+Documentation=man:{{ .Name }}(8) man:{{ .Name }}_config(5)
+After=multi-user.target
+Wants=multi-user.target
+
+[Service]
+ExecStart={{ .InstallPath }}
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=default.target

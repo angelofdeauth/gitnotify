@@ -1,6 +1,6 @@
 // @File:     write.go
 // @Created:  2020-03-27 16:04:02
-// @Modified: 2020-03-27 18:48:43
+// @Modified: 2020-03-27 22:10:43
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -21,18 +21,19 @@ func (e *EmbedBox) WriteFileFromTemplate(fa *FileAttributes, config interface{})
 
 	// create directory (if required)
 	d := filepath.Dir(fa.OutputPath)
-	if _, errs := os.Stat(d); os.IsNotExist(errs) {
+	if _, err := os.Stat(d); os.IsNotExist(err) {
 		if err := os.MkdirAll(d, 0750); err != nil {
 			return err
 		}
 	}
 
 	// create file
-	file, errc := os.Create(fa.OutputPath)
-	if errc != nil {
-		return errc
+	file, err := os.Create(fa.OutputPath)
+	if err != nil {
+		return err
 	}
 
+	// read embedded template to string
 	tmpl, err := e.ReadEmbeddedTemplateToString(fa.TemplatePath)
 	if err != nil {
 		return err
@@ -42,21 +43,24 @@ func (e *EmbedBox) WriteFileFromTemplate(fa *FileAttributes, config interface{})
 	t := template.Must(template.New("").Parse(tmpl))
 
 	// render template to file
-	if errr := t.Execute(file, config); errr != nil {
-		return errr
+	if err := t.Execute(file, config); err != nil {
+		return err
 	}
 
 	// change mode of file
-	if errm := os.Chmod(fa.OutputPath, fa.Mode); errm != nil {
-		return errm
+	if err := os.Chmod(fa.OutputPath, fa.Mode); err != nil {
+		return err
 	}
 
 	// change ownership of file
-	if erro := os.Chown(fa.OutputPath, fa.Owners.UID, fa.Owners.GID); erro != nil {
-		return erro
+	if err := os.Chown(fa.OutputPath, fa.Owners.UID, fa.Owners.GID); err != nil {
+		return err
 	}
 
-	EmbedDecoder.Reset(nil)
+	// reset the embed decoder
+	if err := EmbedDecoder.Reset(nil); err != nil {
+		return err
+	}
 
 	return file.Close()
 }

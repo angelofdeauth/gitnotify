@@ -1,6 +1,6 @@
 // @File:     generator.go
 // @Created:  2020-03-21 03:14:43
-// @Modified: 2020-03-27 19:11:46
+// @Modified: 2020-03-28 04:19:56
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -11,62 +11,62 @@
 package main
 
 import (
-    "bytes"
-    "fmt"
-    "go/format"
-    "io/ioutil"
-    "log"
-    "os"
-    "path/filepath"
-    "strings"
-    "text/template"
+  "bytes"
+  "fmt"
+  "go/format"
+  "io/ioutil"
+  "log"
+  "os"
+  "path/filepath"
+  "strings"
+  "text/template"
 
-    "github.com/gobuffalo/here"
-    "github.com/klauspost/compress/zstd"
+  "github.com/gobuffalo/here"
+  "github.com/klauspost/compress/zstd"
 )
 
 // Config is the generator's configuration structure.
 // It describes the desired state of the blob file to the generator.
 // When executed, the generator attempts to rectify the state of the blob file with the desired state described in the config object.
 type Config struct {
-    BlobFileName string      // The name of the blob file to write the boxes to.
-    BoxConfigs   []BoxConfig // list of configs for boxes.
-    Module       string      // name of the module the boxes are being packaged into. The absolute path of the module's dir is used as the root directory `/` for the boxes.
+  BlobFileName string      // The name of the blob file to write the boxes to.
+  BoxConfigs   []BoxConfig // list of configs for boxes.
+  Module       string      // name of the module the boxes are being packaged into. The absolute path of the module's dir is used as the root directory `/` for the boxes.
 }
 
 // BoxConfig is the configuration for a box.
 // Each box is contained within its own EmbedBox object.
 type BoxConfig struct {
-    Name string // box name.
-    Dirs []Dir  // directories within the box.
+  Name string // box name.
+  Dirs []Dir  // directories within the box.
 }
 
 // Dir is a directory.
 // It is easiest to represent as a bucket (shaped like a U) where the `name`d path is the bottom, and every subdirectory is contained within.
 // files matching the `filter` will not be included in the dir's contents.
 type Dir struct {
-    Contents map[string][]byte // automatically populated, DO NOT USE.
-    Name     string            // path, with / being the root directory (directory of `go env GOMOD`) of the project.
-    Filter   string            // regex filter, matching files will be excluded from the box.
+  Contents map[string][]byte // automatically populated, DO NOT USE.
+  Name     string            // path, with / being the root directory (directory of `go env GOMOD`) of the project.
+  Filter   string            // regex filter, matching files will be excluded from the box.
 }
 
 // genConf is the generator's configuration.
 // This is the structure the generator consumes to generate the
 var genConf = Config{
-    BlobFileName: "blob.go",
-    BoxConfigs: []BoxConfig{
+  BlobFileName: "blob.go",
+  BoxConfigs: []BoxConfig{
+    {
+      Name: "Template",
+      Dirs: []Dir{
         {
-            Name: "Template",
-            Dirs: []Dir{
-                {
-                    Contents: map[string][]byte{}, // automatically populated, DO NOT USE.
-                    Name:     "/pkg/tmpl",         // template directory
-                    Filter:   `^[^\.].*$`,         // don't box hidden files or directories
-                },
-            },
+          Contents: map[string][]byte{}, // automatically populated, DO NOT USE.
+          Name:     "/pkg/tmpl",         // template directory
+          Filter:   `^[^\.].*$`,         // don't box hidden files or directories
         },
+      },
     },
-    Module: "github.com/angelofdeauth/xnotify",
+  },
+  Module: "github.com/angelofdeauth/xnotify",
 }
 
 var conv = map[string]interface{}{"conv": fmtByteSlice}
@@ -82,13 +82,13 @@ var {{ $box.Name }} = newEmbedBox()
 {{ end }}
 {{ define "init" }}
 func init() {
-    {{- range $_, $box := .BoxConfigs }}
-    {{- range $_, $dir := $box.Dirs }}
-    {{- range $name, $file := $dir.Contents }}
-        {{ $box.Name }}.Add("{{ $name }}", []byte{ {{ conv $file }} })
-    {{- end }}
-    {{- end }}
-    {{- end }}
+  {{- range $_, $box := .BoxConfigs }}
+  {{- range $_, $dir := $box.Dirs }}
+  {{- range $name, $file := $dir.Contents }}
+      {{ $box.Name }}.Add("{{ $name }}", []byte{ {{ conv $file }} })
+  {{- end }}
+  {{- end }}
+  {{- end }}
 }
 {{ end }}
 {{ template "header" .}}
@@ -102,107 +102,107 @@ var EmbedEncoder, _ = zstd.NewWriter(nil)
 
 // compress a byte buffer b using Encoder ee
 func compress(ee *zstd.Encoder, b []byte) []byte {
-    return ee.EncodeAll(b, make([]byte, 0, len(b)))
+  return ee.EncodeAll(b, make([]byte, 0, len(b)))
 }
 
 // format the file's byte buffer for writing
 func fmtByteSlice(b []byte) string {
 
-    builder := strings.Builder{}
+  builder := strings.Builder{}
 
-    // compress byte buffer using cached encoder
-    c := compress(EmbedEncoder, b)
+  // compress byte buffer using cached encoder
+  c := compress(EmbedEncoder, b)
 
-    // build the string from the newly compressed buffer
-    for _, v := range c {
-        builder.WriteString(fmt.Sprintf("%d,", int(v)))
-    }
+  // build the string from the newly compressed buffer
+  for _, v := range c {
+    builder.WriteString(fmt.Sprintf("%d,", int(v)))
+  }
 
-    EmbedEncoder.Reset(nil)
+  EmbedEncoder.Reset(nil)
 
-    return builder.String()
+  return builder.String()
 }
 
 func main() {
 
-    // get the on-disk root directory of the Config.Module
-    her, err := here.Package(genConf.Module)
+  // get the on-disk root directory of the Config.Module
+  her, err := here.Package(genConf.Module)
+  if err != nil {
+    panic(err)
+    return
+  }
+  root := her.Module.Dir
+
+  for bxIdx, bxCfg := range genConf.BoxConfigs {
+    for i, d := range bxCfg.Dirs {
+
+      // get absolute path
+      absdpath := filepath.Join(root, d.Name)
+
+      // Checking directory with files
+      if _, err := os.Stat(absdpath); os.IsNotExist(err) {
+        log.Fatal("Static directory does not exists!")
+      }
+
+      // Walk through directory
+      err := filepath.Walk(absdpath, func(path string, info os.FileInfo, err error) error {
+        relativePath := filepath.ToSlash(strings.TrimPrefix(path, absdpath))
+
+        if info.IsDir() {
+          // Skip directories
+          log.Println(path, "is a directory, skipping...")
+          return nil
+        } else {
+          // If element is a simple file, embed
+          log.Println(path, "is a file, packing in...")
+
+          b, err := ioutil.ReadFile(path)
+          if err != nil {
+            // If file not reading
+            log.Printf("Error reading %s: %s", path, err)
+            return err
+          }
+
+          // Add file name to map
+          genConf.BoxConfigs[bxIdx].Dirs[i].Contents[relativePath] = b
+        }
+
+        return nil
+      })
+      if err != nil {
+        log.Fatal("Error walking through EmbedBox directory:", err)
+      }
+
+    }
+
+    // Create blob file
+    f, err := os.Create(genConf.BlobFileName)
     if err != nil {
-        panic(err)
-        return
+      panic(err)
     }
-    root := her.Module.Dir
 
-    for bxIdx, bxCfg := range genConf.BoxConfigs {
-        for i, d := range bxCfg.Dirs {
+    // Create buffer
+    builder := &bytes.Buffer{}
 
-            // get absolute path
-            absdpath := filepath.Join(root, d.Name)
-
-            // Checking directory with files
-            if _, err := os.Stat(absdpath); os.IsNotExist(err) {
-                log.Fatal("Static directory does not exists!")
-            }
-
-            // Walk through directory
-            err := filepath.Walk(absdpath, func(path string, info os.FileInfo, err error) error {
-                relativePath := filepath.ToSlash(strings.TrimPrefix(path, absdpath))
-
-                if info.IsDir() {
-                    // Skip directories
-                    log.Println(path, "is a directory, skipping...")
-                    return nil
-                } else {
-                    // If element is a simple file, embed
-                    log.Println(path, "is a file, packing in...")
-
-                    b, err := ioutil.ReadFile(path)
-                    if err != nil {
-                        // If file not reading
-                        log.Printf("Error reading %s: %s", path, err)
-                        return err
-                    }
-
-                    // Add file name to map
-                    genConf.BoxConfigs[bxIdx].Dirs[i].Contents[relativePath] = b
-                }
-
-                return nil
-            })
-            if err != nil {
-                log.Fatal("Error walking through EmbedBox directory:", err)
-            }
-
-        }
-
-        // Create blob file
-        f, err := os.Create(genConf.BlobFileName)
-        if err != nil {
-            panic(err)
-        }
-
-        // Create buffer
-        builder := &bytes.Buffer{}
-
-        // Execute template
-        if err = tmpl.Execute(builder, genConf); err != nil {
-            panic(err)
-        }
-
-        // Formatting generated code
-        data, err := format.Source(builder.Bytes())
-        if err != nil {
-            panic(err)
-        }
-
-        // Writing blob file
-        if err = ioutil.WriteFile(genConf.BlobFileName, data, os.ModePerm); err != nil {
-            panic(err)
-        }
-
-        // Close file
-        if err = f.Close(); err != nil {
-            panic(err)
-        }
+    // Execute template
+    if err = tmpl.Execute(builder, genConf); err != nil {
+      panic(err)
     }
+
+    // Formatting generated code
+    data, err := format.Source(builder.Bytes())
+    if err != nil {
+      panic(err)
+    }
+
+    // Writing blob file
+    if err = ioutil.WriteFile(genConf.BlobFileName, data, os.ModePerm); err != nil {
+      panic(err)
+    }
+
+    // Close file
+    if err = f.Close(); err != nil {
+      panic(err)
+    }
+  }
 }

@@ -1,6 +1,6 @@
 // @File:     linux.go
 // @Created:  2020-03-23 19:27:52
-// @Modified: 2020-03-27 17:29:57
+// @Modified: 2020-03-28 03:59:41
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -8,8 +8,10 @@
 
 package service
 
-// createServiceFileLinux creates a service file for Linux based systems.
-func createServiceFileLinux(u string) error {
+// createStartupRscLinux creates a service file for Linux based systems.
+func (sf *Flags) createStartupRscLinux() error {
 
-	return createResourceForUser(u, "/service/linux-service.gotmpl", "", "")
+	return sf.createResourceForUser("/service/linux-service.gotmpl",
+		"/etc/systemd/user/xnotify.service",
+		".config/systemd/user/xnotify.service")
 }
