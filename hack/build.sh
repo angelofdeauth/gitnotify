@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     build.sh
 # @Created:  2020-03-25 14:57:39
-# @Modified: 2020-03-26 20:06:01
+# @Modified: 2020-03-28 04:14:33
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -15,8 +15,8 @@ cd "$(dirname "$0")/../"
 version() { IFS="."; printf "%03d%03d%03d\\n" $@; unset IFS;}
 
 if [ "$(version "${CURR_GO_VERSION#go}")" -lt "$(version "${MINIMUM_GO_VERSION}")" ]; then
-     echo "Go version should be greater or equal to: ${MINIMUM_GO_VERSION}"
-     exit 1
+  echo "Go version should be greater or equal to: ${MINIMUM_GO_VERSION}"
+  exit 1
 fi
 
 GOFLAGS="${GOFLAGS:--mod=vendor}"
