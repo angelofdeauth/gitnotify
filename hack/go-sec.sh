@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     go-sec.sh
 # @Created:  2020-03-25 16:21:37
-# @Modified: 2020-03-26 19:27:54
+# @Modified: 2020-03-27 17:42:22
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -12,9 +12,11 @@ set -ex
 cd "$(dirname "$0")/../"
 
 containerFunc() {
-  cd /tmp
-  go get github.com/securego/gosec/cmd/gosec
-  cd -
+  if ! command -v gosec >/dev/null; then
+    cd /tmp
+    go get github.com/securego/gosec/cmd/gosec
+    cd -
+  fi
   gosec \
     -severity high \
     -confidence high \

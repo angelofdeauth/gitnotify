@@ -1,6 +1,6 @@
 // @File:     windows.go
 // @Created:  2020-03-23 19:30:08
-// @Modified: 2020-03-24 18:57:48
+// @Modified: 2020-03-27 17:30:11
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -10,11 +10,5 @@ package service
 
 // createRegistryKeysWindows creates startup registry keys windows based systems.
 func createRegistryKeysWindows(u string) error {
-	/*
-		rkw, err := box.TemplateBox.ReadEmbeddedTemplateToString("/service/windows-registry.reg.gotmpl")
-		if err != nil {
-			return err
-		}
-	*/
-	return nil
+	return createResourceForUser(u, "/service/windows-registry.reg.gotmpl", "", "")
 }

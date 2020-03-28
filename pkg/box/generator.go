@@ -1,6 +1,6 @@
 // @File:     generator.go
 // @Created:  2020-03-21 03:14:43
-// @Modified: 2020-03-25 12:58:31
+// @Modified: 2020-03-27 19:11:46
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -25,17 +25,13 @@ import (
     "github.com/klauspost/compress/zstd"
 )
 
-const (
-    blobFileName string = "blob.go"
-    embedFolder  string = "../../tmpl"
-)
-
 // Config is the generator's configuration structure.
 // It describes the desired state of the blob file to the generator.
 // When executed, the generator attempts to rectify the state of the blob file with the desired state described in the config object.
 type Config struct {
-    BoxConfigs []BoxConfig // list of configs for boxes.
-    Module     string      // name of the module the boxes are being packaged into. The absolute path of the module's dir is used as the root directory `/` for the boxes.
+    BlobFileName string      // The name of the blob file to write the boxes to.
+    BoxConfigs   []BoxConfig // list of configs for boxes.
+    Module       string      // name of the module the boxes are being packaged into. The absolute path of the module's dir is used as the root directory `/` for the boxes.
 }
 
 // BoxConfig is the configuration for a box.
@@ -54,7 +50,10 @@ type Dir struct {
     Filter   string            // regex filter, matching files will be excluded from the box.
 }
 
+// genConf is the generator's configuration.
+// This is the structure the generator consumes to generate the
 var genConf = Config{
+    BlobFileName: "blob.go",
     BoxConfigs: []BoxConfig{
         {
             Name: "Template",
@@ -101,31 +100,37 @@ func init() {
 // EmbedEncoder is a writer that caches compressors.
 var EmbedEncoder, _ = zstd.NewWriter(nil)
 
-// compress a byte buffer
+// compress a byte buffer b using Encoder ee
 func compress(ee *zstd.Encoder, b []byte) []byte {
     return ee.EncodeAll(b, make([]byte, 0, len(b)))
 }
 
+// format the file's byte buffer for writing
 func fmtByteSlice(b []byte) string {
+
     builder := strings.Builder{}
 
+    // compress byte buffer using cached encoder
     c := compress(EmbedEncoder, b)
 
+    // build the string from the newly compressed buffer
     for _, v := range c {
         builder.WriteString(fmt.Sprintf("%d,", int(v)))
     }
+
+    EmbedEncoder.Reset(nil)
 
     return builder.String()
 }
 
 func main() {
 
+    // get the on-disk root directory of the Config.Module
     her, err := here.Package(genConf.Module)
     if err != nil {
         panic(err)
         return
     }
-
     root := her.Module.Dir
 
     for bxIdx, bxCfg := range genConf.BoxConfigs {
@@ -171,7 +176,7 @@ func main() {
         }
 
         // Create blob file
-        f, err := os.Create(blobFileName)
+        f, err := os.Create(genConf.BlobFileName)
         if err != nil {
             panic(err)
         }
@@ -191,10 +196,11 @@ func main() {
         }
 
         // Writing blob file
-        if err = ioutil.WriteFile(blobFileName, data, os.ModePerm); err != nil {
+        if err = ioutil.WriteFile(genConf.BlobFileName, data, os.ModePerm); err != nil {
             panic(err)
         }
 
+        // Close file
         if err = f.Close(); err != nil {
             panic(err)
         }
