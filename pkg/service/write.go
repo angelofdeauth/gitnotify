@@ -1,6 +1,6 @@
 // @File:     write.go
 // @Created:  2020-03-23 15:25:31
-// @Modified: 2020-03-29 01:29:20
+// @Modified: 2020-03-29 12:40:22
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -23,7 +23,7 @@ type paths struct {
 
 // createResourcesForUser generic function for creating resource files.
 // inputs: username (string), template path in box (string), root destination path (string), user destination path (string)
-func createResourceForUser(rtc *rtc.RunTimeCfg, pths *paths) error {
+func writeResourceForUser(rtc *rtc.RunTimeCfg, pths *paths) error {
 
   // set up fileAttributes
   fa := box.NewFileAttributes()

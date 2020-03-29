@@ -1,6 +1,6 @@
 // @File:     cmd.go
 // @Created:  2020-03-19 19:05:29
-// @Modified: 2020-03-29 01:47:43
+// @Modified: 2020-03-29 12:45:51
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -10,6 +10,9 @@
 package cmd
 
 import (
+	"fmt"
+	"runtime"
+
 	"github.com/angelofdeauth/xnotify/pkg/rtc"
 	"github.com/angelofdeauth/xnotify/pkg/service"
 	"github.com/urfave/cli/v2"
@@ -66,7 +69,18 @@ func Set(a *cli.App, rtc *rtc.RunTimeCfg) {
 			Aliases: []string{"s"},
 			Usage:   "Create service file.",
 			Action: func(c *cli.Context) error {
-				return service.CreateStartupResources(rtc)
+				switch os := runtime.GOOS; os {
+				case "darwin":
+					return service.Darwin(rtc)
+				case "freebsd":
+					return service.FreeBSD(rtc)
+				case "linux":
+					return service.Linux(rtc)
+				case "windows":
+					return service.Windows(rtc)
+				default:
+					return fmt.Errorf("Unsupported operating system: %s", os)
+				}
 			},
 			Flags: []cli.Flag{
 				&cli.StringFlag{
@@ -90,6 +104,12 @@ func Set(a *cli.App, rtc *rtc.RunTimeCfg) {
 					Usage:       "output rendered service resources to `DIR`",
 					Value:       "",
 					Destination: &rtc.OutputPath,
+				},
+				&cli.BoolFlag{
+					Name:        "apply",
+					Aliases:     []string{"A"},
+					Value:       false,
+					Destination: &rtc.Apply,
 				},
 			},
 		},
