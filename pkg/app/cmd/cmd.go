@@ -1,6 +1,6 @@
 // @File:     cmd.go
 // @Created:  2020-03-19 19:05:29
-// @Modified: 2020-03-29 12:45:51
+// @Modified: 2020-03-29 23:53:54
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -106,10 +106,10 @@ func Set(a *cli.App, rtc *rtc.RunTimeCfg) {
 					Destination: &rtc.OutputPath,
 				},
 				&cli.BoolFlag{
-					Name:        "apply",
-					Aliases:     []string{"A"},
+					Name:        "start",
+					Aliases:     []string{"s"},
 					Value:       false,
-					Destination: &rtc.Apply,
+					Destination: &rtc.Start,
 				},
 			},
 		},

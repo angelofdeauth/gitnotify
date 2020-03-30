@@ -1,6 +1,6 @@
 // @File:     windows.go
 // @Created:  2020-03-23 19:30:08
-// @Modified: 2020-03-29 12:43:12
+// @Modified: 2020-03-29 23:58:54
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -10,8 +10,8 @@ package service
 
 import "github.com/angelofdeauth/xnotify/pkg/rtc"
 
-// applyStartupRscWindows applies the
-func applyStartupRscWindows(rtc *rtc.RunTimeCfg) error {
+// startDaemonWindows applies the
+func startDaemonWindows(rtc *rtc.RunTimeCfg) error {
 	return nil
 }
 
@@ -32,8 +32,8 @@ func Windows(rtc *rtc.RunTimeCfg) error {
 	if err := createStartupRscWindows(rtc); err != nil {
 		return err
 	}
-	if rtc.Apply {
-		if err := applyStartupRscWindows(rtc); err != nil {
+	if rtc.Start {
+		if err := startDaemonWindows(rtc); err != nil {
 			return err
 		}
 	}
