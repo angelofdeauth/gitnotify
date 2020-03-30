@@ -1,6 +1,6 @@
 // @File:     freebsd.go
 // @Created:  2020-03-23 19:28:59
-// @Modified: 2020-03-29 23:58:43
+// @Modified: 2020-03-30 17:35:59
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -8,10 +8,27 @@
 
 package service
 
-import "github.com/angelofdeauth/xnotify/pkg/rtc"
+import (
+	"log"
+	"os/exec"
+
+	"github.com/angelofdeauth/xnotify/pkg/rtc"
+)
+
+// launchctlLoad is the function to load the plist into launchctl.
+func startCmd(srv string) ([]byte, error) {
+	return exec.Command("service", srv, "start").CombinedOutput()
+}
 
 // startDaemonFreeBSD applies the
 func startDaemonFreeBSD(rtc *rtc.RunTimeCfg) error {
+
+	o, err := startCmd(rtc.App)
+	if err != nil {
+		return err
+	}
+	log.Printf("[launchctl output]: %s", o)
+
 	return nil
 }
 
