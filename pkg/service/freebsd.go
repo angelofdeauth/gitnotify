@@ -1,6 +1,6 @@
 // @File:     freebsd.go
 // @Created:  2020-03-23 19:28:59
-// @Modified: 2020-03-30 17:35:59
+// @Modified: 2020-03-30 23:47:18
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -15,19 +15,28 @@ import (
 	"github.com/angelofdeauth/xnotify/pkg/rtc"
 )
 
-// launchctlLoad is the function to load the plist into launchctl.
-func startCmd(srv string) ([]byte, error) {
-	return exec.Command("service", srv, "start").CombinedOutput()
+// sysrcStartCmd is the function to load and start the service.
+func sysrcStartCmd(srv string) error {
+	erren, err := exec.Command("sysrc", "xnotify_enable=\"YES\"").CombinedOutput()
+	if err != nil {
+		return err
+	}
+	log.Printf("[sysrc ouptut]: %s", erren)
+	errst, err := exec.Command("service", srv, "start").CombinedOutput()
+	if err != nil {
+		return err
+	}
+	log.Printf("[service output]: %s", errst)
+	return nil
 }
 
 // startDaemonFreeBSD applies the
 func startDaemonFreeBSD(rtc *rtc.RunTimeCfg) error {
 
-	o, err := startCmd(rtc.App)
+	err := sysrcStartCmd(rtc.App)
 	if err != nil {
 		return err
 	}
-	log.Printf("[launchctl output]: %s", o)
 
 	return nil
 }
