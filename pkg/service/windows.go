@@ -1,6 +1,6 @@
 // @File:     windows.go
 // @Created:  2020-03-23 19:30:08
-// @Modified: 2020-03-29 23:58:54
+// @Modified: 2020-03-31 00:36:44
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -8,11 +8,32 @@
 
 package service
 
-import "github.com/angelofdeauth/xnotify/pkg/rtc"
+import (
+	"log"
+	"os/exec"
+
+	"github.com/angelofdeauth/xnotify/pkg/rtc"
+)
+
+// netStartService is the function to start the service.
+func netStartService(srv string) ([]byte, error) {
+	return exec.Command("net", "start", srv).CombinedOutput()
+}
 
 // startDaemonWindows applies the
 func startDaemonWindows(rtc *rtc.RunTimeCfg) error {
+	o, err := netStartService(rtc.App)
+	if err != nil {
+		return err
+	}
+	log.Printf("[net start output]: %s", o)
+
 	return nil
+}
+
+// applyStartupRscWindows applies the registry keys generated from createStartupRscWindows.
+func applyStartupRscWindows(rtc *rtc.RunTimeCfg) ([]byte, error) {
+	return exec.Command("regedit", "\\s", rtc.OutputPath).CombinedOutput()
 }
 
 // createStartupRscWindows creates startup registry keys windows based systems.
@@ -32,6 +53,11 @@ func Windows(rtc *rtc.RunTimeCfg) error {
 	if err := createStartupRscWindows(rtc); err != nil {
 		return err
 	}
+	strap, err := applyStartupRscWindows(rtc)
+	if err != nil {
+		return err
+	}
+	log.Printf("[regedit output]: %s", strap)
 	if rtc.Start {
 		if err := startDaemonWindows(rtc); err != nil {
 			return err
