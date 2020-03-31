@@ -1,6 +1,6 @@
 // @File:     windows.go
 // @Created:  2020-03-23 19:30:08
-// @Modified: 2020-03-31 00:36:44
+// @Modified: 2020-03-31 00:43:30
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -22,6 +22,7 @@ func netStartService(srv string) ([]byte, error) {
 
 // startDaemonWindows applies the
 func startDaemonWindows(rtc *rtc.RunTimeCfg) error {
+
 	o, err := netStartService(rtc.App)
 	if err != nil {
 		return err
@@ -50,18 +51,22 @@ func createStartupRscWindows(rtc *rtc.RunTimeCfg) error {
 
 // Windows is the service setup function called for Windows based systems.
 func Windows(rtc *rtc.RunTimeCfg) error {
+
 	if err := createStartupRscWindows(rtc); err != nil {
 		return err
 	}
+
 	strap, err := applyStartupRscWindows(rtc)
 	if err != nil {
 		return err
 	}
 	log.Printf("[regedit output]: %s", strap)
+
 	if rtc.Start {
 		if err := startDaemonWindows(rtc); err != nil {
 			return err
 		}
 	}
+
 	return nil
 }
