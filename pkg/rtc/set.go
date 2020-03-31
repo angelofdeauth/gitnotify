@@ -1,6 +1,6 @@
 // @File:     set.go
 // @Created:  2020-03-29 00:55:11
-// @Modified: 2020-03-29 00:55:38
+// @Modified: 2020-03-29 23:03:11
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -20,4 +20,14 @@ func (rtc *RunTimeCfg) SetCurrentUserHome() error {
 	}
 
 	return nil
+}
+
+// SetInstallPath sets the install path to the given `str` input.
+func (rtc *RunTimeCfg) SetInstallPath(str string) {
+	rtc.InstallPath = str
+}
+
+// SetOutputPath sets the output path to the given `str` input
+func (rtc *RunTimeCfg) SetOutputPath(str string) {
+	rtc.OutputPath = str
 }

@@ -1,6 +1,6 @@
 // @File:     write.go
 // @Created:  2020-03-23 15:25:31
-// @Modified: 2020-03-29 12:40:22
+// @Modified: 2020-03-29 23:04:23
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -34,10 +34,10 @@ func writeResourceForUser(rtc *rtc.RunTimeCfg, pths *paths) error {
     // default option, no user flag specified.
 
     // set the config object install path for use in templates
-    rtc.InstallPath = rtc.GetInstallPathD(pths.rootInstallPath)
+    rtc.SetInstallPath(rtc.GetInstallPathD(pths.rootInstallPath))
 
     //set the runtime config output path
-    rtc.OutputPath = rtc.GetOutputPathD(pths.rootServiceRscPath)
+    rtc.SetOutputPath(rtc.GetOutputPathD(pths.rootServiceRscPath))
 
     // set the file attributes output path
     fa.OutputPath = rtc.OutputPath
@@ -48,10 +48,10 @@ func writeResourceForUser(rtc *rtc.RunTimeCfg, pths *paths) error {
     // user specified from flag or unspecified user flag set.
 
     // set the config object install path for use in templates
-    rtc.InstallPath = rtc.GetInstallPathD(pths.userInstallPath)
+    rtc.SetInstallPath(rtc.GetInstallPathD(pths.userInstallPath))
 
     // set the runtime config output path
-    rtc.OutputPath = rtc.GetOutputPathD(pths.userServiceRscPath)
+    rtc.SetOutputPath(rtc.GetOutputPathD(pths.userServiceRscPath))
 
     // set the file attributes for passed user.
     err := fa.SetFileAttributesForUser(rtc.User, rtc.OutputPath)
