@@ -37,7 +37,7 @@ Similarly, a `file` `update` event can trigger a script to write a git commit fo
 
 The build scripts in `hack/` test for the existence of required build tools on the system.
 If the tools are not found, `podman` is used to run a container with the tool.
-Thus, if the system does not have any of the required tools, the only requirement is `podman`.
+The only requirement is `podman` and `GNU Make` if the system does not have any of the required tools.
 Docker can be used instead by aliasing podman to docker.
 ```sh
 alias podman="docker"

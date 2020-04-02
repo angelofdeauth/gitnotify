@@ -5,6 +5,7 @@ MINIMUM_GO_VERSION=1.13
 APP?=xnotify
 ARCH?=amd64
 BOX_BLOBFILE=pkg/box/blob.go
+BRANCH?=$(shell git rev-parse --abbrev-ref HEAD)
 BUILD_DIR?=bin
 HACK_DIR?=hack
 INSTALL_PATH=/usr/local/bin
@@ -15,8 +16,8 @@ RELEASE?=false
 # Vars, automatically populated
 COMMIT=$(shell git rev-parse --verify 'HEAD^{commit}')
 CURR_GO_VERSION=$(shell go version | grep go | cut -d " " -f 3)
+SEMVER=$(shell git describe --always --abbrev=0 --dirty)
 VERSION=$(shell git describe --always --abbrev=40 --dirty)
-SEMVER=$(shell git describe --always --abbrev=0)
 
 # Complex Vars, built from the variables above and environment variables
 FILE_ARCH=$(OS)_$(ARCH)

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     pr-close.sh
 # @Created:  2020-03-27 01:04:32
-# @Modified: 2020-03-27 02:08:14
+# @Modified: 2020-04-02 01:14:51
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -10,10 +10,6 @@
 set -ex
 
 cd "$(dirname "$0")/../"
-
-if [ -z "${BRANCH}" ]; then
-  BRANCH=$(git rev-parse --abbrev-ref HEAD)
-fi
 
 mergefn() {
   git fetch origin
