@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     branch.sh
 # @Created:  2020-03-26 21:59:49
-# @Modified: 2020-03-31 16:38:37
+# @Modified: 2020-04-02 00:28:26
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -9,7 +9,7 @@
 
 # Create a new branch from current.  Usage:
 #
-#   $ hack/branch.sh BRANCHNAME
+#   $ hack/branch.sh
 
 set -ex
 
