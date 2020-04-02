@@ -1,6 +1,6 @@
 // @File:     service.go
 // @Created:  2020-03-21 12:50:33
-// @Modified: 2020-03-28 04:27:59
+// @Modified: 2020-03-29 00:56:34
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -12,44 +12,21 @@ package service
 import (
 	"fmt"
 	"runtime"
+
+	"github.com/angelofdeauth/xnotify/pkg/rtc"
 )
 
-// Flags is the object for the flags passed to the service command.
-type Flags struct {
-	InstallDir string
-	OutputDir  string
-	User       string
-}
-
-// getInstallDirDefault returns the Flags.InstallDir field if set, or the passed string otherwise.
-func (sf *Flags) getInstallDirDefault(str string) string {
-
-	if sf.InstallDir == "" {
-		return str
-	}
-	return sf.InstallDir
-}
-
-// getOutputDirDefault returns the Flags.OutputDir field if set, or the passed string otherwise.
-func (sf *Flags) getOutputDirDefault(str string) string {
-
-	if sf.OutputDir == "" {
-		return str
-	}
-	return sf.OutputDir
-}
-
 // CreateStartupResources creates the required resources to start the service on boot.
-func (sf *Flags) CreateStartupResources() error {
+func CreateStartupResources(rtc *rtc.RunTimeCfg) error {
 	switch os := runtime.GOOS; os {
 	case "darwin":
-		return sf.createStartupRscDarwin()
+		return createStartupRscDarwin(rtc)
 	case "freebsd":
-		return sf.createStartupRscFreeBSD()
+		return createStartupRscFreeBSD(rtc)
 	case "linux":
-		return sf.createStartupRscLinux()
+		return createStartupRscLinux(rtc)
 	case "windows":
-		return sf.createStartupRscWindows()
+		return createStartupRscWindows(rtc)
 	default:
 		return fmt.Errorf("Unsupported operating system: %s", os)
 	}

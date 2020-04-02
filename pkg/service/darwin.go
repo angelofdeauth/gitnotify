@@ -1,6 +1,6 @@
 // @File:     darwin.go
 // @Created:  2020-03-23 18:30:06
-// @Modified: 2020-03-28 04:00:09
+// @Modified: 2020-03-29 01:09:16
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -8,10 +8,16 @@
 
 package service
 
-// createStartupRscDarwin creates a launchd job file for macOS.
-func (sf *Flags) createStartupRscDarwin() error {
+import "github.com/angelofdeauth/xnotify/pkg/rtc"
 
-	return sf.createResourceForUser("/service/darwin-launchd.plist.gotmpl",
-		"/Library/LaunchDaemons/xnotify.plist",
-		"Library/LaunchAgents/com.angelofdeauth.fate.sdd.xnotify.plist")
+// createStartupRscDarwin creates a launchd job file for macOS.
+func createStartupRscDarwin(rtc *rtc.RunTimeCfg) error {
+
+	return createResourceForUser(rtc, &paths{
+		templatePath:       "/service/darwin-launchd.plist.gotmpl",
+		rootServiceRscPath: "/Library/LaunchDaemons/xnotify.plist",
+		userServiceRscPath: "Library/LaunchAgents/com.angelofdeauth.fate.sdd.xnotify.plist",
+		rootInstallPath:    "",
+		userInstallPath:    "",
+	})
 }

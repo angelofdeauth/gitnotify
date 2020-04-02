@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @File:     build.sh
 # @Created:  2020-03-25 14:57:39
-# @Modified: 2020-03-28 04:14:33
+# @Modified: 2020-03-29 01:39:08
 # @OA:       Antonio Escalera
 # @CA:       Antonio Escalera
 # @Mail:     aj@angelofdeauth.host
@@ -20,7 +20,7 @@ if [ "$(version "${CURR_GO_VERSION#go}")" -lt "$(version "${MINIMUM_GO_VERSION}"
 fi
 
 GOFLAGS="${GOFLAGS:--mod=vendor}"
-LDFLAGS="${LDFLAGS} -X main.VERSION=${VERSION} -X main.COMMIT=${COMMIT} -X main.APP=${APP}"
+LDFLAGS="${LDFLAGS} -X 'pkg/app.VERSION=${VERSION}' -X 'pkg/app.TIME=$(date -u)' -X 'pkg/app.COMMIT=${COMMIT}' -X 'pkg/app.APP=${APP}'"
 TAGS="${VERSION}"
 
 containerFunc() {

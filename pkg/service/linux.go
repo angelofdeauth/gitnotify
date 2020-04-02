@@ -1,6 +1,6 @@
 // @File:     linux.go
 // @Created:  2020-03-23 19:27:52
-// @Modified: 2020-03-28 03:59:41
+// @Modified: 2020-03-29 01:10:04
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -8,10 +8,16 @@
 
 package service
 
-// createStartupRscLinux creates a service file for Linux based systems.
-func (sf *Flags) createStartupRscLinux() error {
+import "github.com/angelofdeauth/xnotify/pkg/rtc"
 
-	return sf.createResourceForUser("/service/linux-service.gotmpl",
-		"/etc/systemd/user/xnotify.service",
-		".config/systemd/user/xnotify.service")
+// createStartupRscLinux creates a service file for Linux based systems.
+func createStartupRscLinux(rtc *rtc.RunTimeCfg) error {
+
+	return createResourceForUser(rtc, &paths{
+		templatePath:       "/service/linux-service.gotmpl",
+		rootServiceRscPath: "/etc/systemd/user/xnotify.service",
+		userServiceRscPath: ".config/systemd/user/xnotify.service",
+		rootInstallPath:    "",
+		userInstallPath:    "",
+	})
 }

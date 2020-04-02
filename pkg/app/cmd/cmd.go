@@ -1,6 +1,6 @@
 // @File:     cmd.go
 // @Created:  2020-03-19 19:05:29
-// @Modified: 2020-03-28 04:28:27
+// @Modified: 2020-03-29 01:47:43
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -10,13 +10,13 @@
 package cmd
 
 import (
+	"github.com/angelofdeauth/xnotify/pkg/rtc"
 	"github.com/angelofdeauth/xnotify/pkg/service"
 	"github.com/urfave/cli/v2"
 )
 
 // Set sets the cli.App Commands field.
-func Set(a *cli.App) {
-	var sf service.Flags
+func Set(a *cli.App, rtc *rtc.RunTimeCfg) {
 
 	a.Commands = []*cli.Command{
 		{
@@ -64,9 +64,9 @@ func Set(a *cli.App) {
 		{
 			Name:    "service",
 			Aliases: []string{"s"},
-			Usage:   "Set up service file.",
+			Usage:   "Create service file.",
 			Action: func(c *cli.Context) error {
-				return sf.CreateStartupResources()
+				return service.CreateStartupResources(rtc)
 			},
 			Flags: []cli.Flag{
 				&cli.StringFlag{
@@ -74,21 +74,22 @@ func Set(a *cli.App) {
 					Aliases:     []string{"u"},
 					Usage:       "run service as `USER`",
 					Value:       "root",
-					Destination: &sf.User,
+					Destination: &rtc.User,
 				},
 				&cli.StringFlag{
-					Name:        "install-dir",
+					Name:        "install-path",
 					Aliases:     []string{"i"},
 					Usage:       "point service file to `FILE`",
 					Value:       "",
-					Destination: &sf.InstallDir,
+					Destination: &rtc.InstallPath,
+					Required:    true,
 				},
 				&cli.StringFlag{
-					Name:        "output-dir",
+					Name:        "output-path",
 					Aliases:     []string{"o"},
 					Usage:       "output rendered service resources to `DIR`",
 					Value:       "",
-					Destination: &sf.OutputDir,
+					Destination: &rtc.OutputPath,
 				},
 			},
 		},

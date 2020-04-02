@@ -1,6 +1,6 @@
 // @File:     write.go
 // @Created:  2020-03-27 16:04:02
-// @Modified: 2020-03-27 22:10:43
+// @Modified: 2020-03-28 15:39:24
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
