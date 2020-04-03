@@ -1,6 +1,6 @@
 // @File:     cmd.go
 // @Created:  2020-03-19 19:05:29
-// @Modified: 2020-03-29 23:53:54
+// @Modified: 2020-04-03 12:03:55
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -110,6 +110,12 @@ func Set(a *cli.App, rtc *rtc.RunTimeCfg) {
 					Aliases:     []string{"s"},
 					Value:       false,
 					Destination: &rtc.Start,
+				},
+				&cli.StringFlag{
+					Name:        "daemon-args",
+					Aliases:     []string{"d"},
+					Value:       "",
+					Destination: &rtc.DaemonArgs,
 				},
 			},
 		},
