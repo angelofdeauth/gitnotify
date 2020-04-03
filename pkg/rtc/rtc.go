@@ -1,6 +1,6 @@
 // @File:     rtc.go
 // @Created:  2020-03-28 21:05:29
-// @Modified: 2020-03-29 23:54:13
+// @Modified: 2020-04-03 12:02:50
 // @Author:   Antonio Escalera
 // @Commiter: Antonio Escalera
 // @Mail:     aj@angelofdeauth.host
@@ -26,6 +26,7 @@ type RunTimeCfg struct {
 // Service is the object for runtime configuration passed to the Service command.
 type Service struct {
 	Start       bool
+	DaemonArgs  string
 	InstallPath string
 	OutputPath  string
 	User        string
